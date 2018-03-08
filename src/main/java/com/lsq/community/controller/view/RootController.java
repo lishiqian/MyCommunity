@@ -10,10 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class RootController {
-    public RootController(){
-        System.out.println("----------------------SPRING--------------------------------------------");
-    }
-
     @RequestMapping("/hello")
     @ResponseBody
     public String helloTest(){
