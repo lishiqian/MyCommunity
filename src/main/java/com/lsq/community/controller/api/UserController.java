@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     public Gson gson;
 
-    @RequestMapping("/get_user_info")
+    @RequestMapping(value = "/get_user_info",produces = "application/json;charset=utf-8")
     @ResponseBody()
     public String getUserInfo(Long id){
         User user = userService.selectUserById(id);
