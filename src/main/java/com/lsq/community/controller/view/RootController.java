@@ -15,4 +15,9 @@ public class RootController {
     public String helloTest(){
         return "hello";
     }
+
+    @RequestMapping(value = "/main",produces = "application/json;charset=utf-8")
+    public String main(){
+        return "main";
+    }
 }

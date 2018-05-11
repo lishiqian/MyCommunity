@@ -7,5 +7,5 @@ import com.lsq.community.pojo.User;
  * @Date:Created in 2018/3/8 18:05
  */
 public interface UserService {
-    public User selectUserById(Long id);
+    User selectUserById(Long id);
 }

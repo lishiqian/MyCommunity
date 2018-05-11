@@ -1,11 +1,14 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- 引入jquery的js文件 -->
+    <script type="text/javascript" src="../util/jquery/jquery-3.3.1.min.js"></script>
+    <!-- 引入bootstrap的js文件 -->
+    <script type="text/javascript" src="../util/bootstrap/js/bootstrap.js"></script>
+    <!-- 引入bootstrap的css文件 -->
+    <link rel="stylesheet" type="text/css" href="../util/bootstrap/css/bootstrap.css">
     <!-- 配置文件 -->
     <script type="text/javascript" src="../util/ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
@@ -15,15 +18,51 @@
         body{
             background: #f2f2f2;
         }
-        #container{
-            height: 400px;
-        }
         #content{
             border: 1px solid #cccccc;
             background: #ffffff;
             padding: 80px;
         }
     </style>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        $(function () {
+            var ue = UE.getEditor('myEditor',{
+                initialFrameHeight:600,//设置编辑器高度
+                scaleEnabled:true//设置不自动调整高度
+//scaleEnabled {Boolean} [默认值：false]//是否可以拉伸长高，(设置true开启时，自动长高失效)
+            });
+
+            var commit = function (status) {
+                var content = ue.getContent();
+                var title = $("#title").text();
+
+                var prim = {
+                    title:title,
+                    content:content,
+                    status:status
+                };
+
+                $.get("/forum/add_forum",prim,function (data) {
+                    alert(data);
+                })
+            }
+
+            $("#save").click(function () {
+                var status = 2;
+                commit(status);
+            });
+
+            $("#publish").click(function () {
+                var status = 1;
+                commit(status)
+            });
+        });
+
+
+
+
+    </script>
 </head>
 <body>
     <!--导航栏-->
@@ -74,22 +113,23 @@
                 <h4>编写博客</h4>
                 <hr/>
                 <div class="row">
-                    <input type="text" class="form-control" placeholder="请输入标题"/>
+                    <input type="text" class="form-control" placeholder="请输入标题" id="title"/>
                 </div>
                 <div class="row">&nbsp;</div>
                 <div class="row">
                     <!-- 加载编辑器的容器 -->
-                    <script id="container" name="content" type="text/plain"></script>
+                    <textarea id="myEditor" name="content" type="text/plain"></textarea>
                 </div>
                 <div class="row">&nbsp;</div>
-                <div class="row" style="margin-top: 150px">
+                <div class="row">&nbsp;</div>
+                <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
-                        <button type="button" class="btn btn-info">保存文章</button></p>
+                        <button type="button" class="btn btn-info" id="save">保存草稿</button></p>
                     </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-4">
-                        <button type="button" class="btn btn-danger">发布文章</button>
+                        <button type="button" class="btn btn-danger" id="publish">发布文章</button>
                     </div>
                 </div>
             </div>
@@ -100,9 +140,6 @@
     </div>
 
 
-    <!-- 实例化编辑器 -->
-    <script type="text/javascript">
-        var ue = UE.getEditor('container');
-    </script>
+
 </body>
 </html>

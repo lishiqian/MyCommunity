@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- 引入jquery的js文件 -->
+    <script type="text/javascript" src="../util/jquery/jquery-3.3.1.min.js"></script>
+    <!-- 引入bootstrap的js文件 -->
+    <script type="text/javascript" src="../util/bootstrap/js/bootstrap.js"></script>
+    <!-- 引入bootstrap的css文件 -->
+    <link rel="stylesheet" type="text/css" href="../util/bootstrap/css/bootstrap.css">
+
     <style type="text/css">
         body{
             background: #f2f2f2;

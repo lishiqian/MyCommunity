@@ -17,8 +17,10 @@
     <!-- 开启SpringMVC注解模式 -->
     <mvc:annotation-driven/>
 
-    <!-- 静态资源默认servlet配置 -->
-    <mvc:default-servlet-handler/>
+
+
+    <!--对静态资源文件的访问-->
+    <mvc:resources mapping="/util/**" location="/WEB-INF/util/" />
 
     <!-- 配置jsp 显示ViewResolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

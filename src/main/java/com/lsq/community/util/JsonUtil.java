@@ -2,7 +2,6 @@ package com.lsq.community.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.omg.CORBA.Object;
 
 public class JsonUtil{
     private static Gson gson = new GsonBuilder()
