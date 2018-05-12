@@ -35,7 +35,7 @@
 
             var commit = function (status) {
                 var content = ue.getContent();
-                var title = $("#title").text();
+                var title = $("#title").val();
 
                 var prim = {
                     title:title,
@@ -43,7 +43,7 @@
                     status:status
                 };
 
-                $.get("/forum/add_forum",prim,function (data) {
+                $.post("/forum/add_forum",prim,function (data) {
                     alert(data);
                 })
             }

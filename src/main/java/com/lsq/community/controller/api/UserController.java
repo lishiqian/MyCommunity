@@ -1,7 +1,7 @@
 package com.lsq.community.controller.api;
 
-import com.google.gson.Gson;
-import com.lsq.community.pojo.User;
+import com.lsq.community.common.ErrorCode;
+import com.lsq.community.po.User;
 import com.lsq.community.service.UserService;
 import com.lsq.community.util.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,8 @@ public class UserController {
 
     @RequestMapping(value = "/get_user_info",produces = "application/json;charset=utf-8")
     @ResponseBody()
-    public String getUserInfo(Long id){
+    public String getUserInfo(Integer id){
         User user = userService.selectUserById(id);
-        return JsonUtil.toJson(user);
-
+        return ErrorCode.ok(user).toString();
     }
 }

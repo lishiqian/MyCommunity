@@ -1,13 +1,30 @@
 package com.lsq.community.mapper;
 
-import com.lsq.community.pojo.User;
+import com.lsq.community.po.User;
+import com.lsq.community.po.UserExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
-/**
- * @author lishiqian
- * @Date:Created in 2018/3/8 17:56
- */
 public interface UserMapper {
+    int countByExample(UserExample example);
 
-    public User selectUserById(Long id);
+    int deleteByExample(UserExample example);
 
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(User record);
+
+    int insertSelective(User record);
+
+    List<User> selectByExample(UserExample example);
+
+    User selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByPrimaryKeySelective(User record);
+
+    int updateByPrimaryKey(User record);
 }

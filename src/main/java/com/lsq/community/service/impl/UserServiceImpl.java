@@ -1,13 +1,10 @@
 package com.lsq.community.service.impl;
 
 import com.lsq.community.mapper.UserMapper;
-import com.lsq.community.pojo.User;
+import com.lsq.community.po.User;
 import com.lsq.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author lishiqian
@@ -19,8 +16,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+
+
     @Override
-    public User selectUserById(Long id) {
-        return userMapper.selectUserById(id);
+    public User selectUserById(Integer id) {
+        return userMapper.selectByPrimaryKey(id);
     }
 }
