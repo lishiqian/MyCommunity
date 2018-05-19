@@ -29,8 +29,8 @@
         $(function () {
             var ue = UE.getEditor('myEditor',{
                 initialFrameHeight:600,//设置编辑器高度
-                scaleEnabled:true//设置不自动调整高度
-//scaleEnabled {Boolean} [默认值：false]//是否可以拉伸长高，(设置true开启时，自动长高失效)
+                scaleEnabled:true,//设置不自动调整高度 scaleEnabled {Boolean} [默认值：false]//是否可以拉伸长高，(设置true开启时，自动长高失效)
+                wordCount:false //关闭字数统计
             });
 
             var commit = function (status) {

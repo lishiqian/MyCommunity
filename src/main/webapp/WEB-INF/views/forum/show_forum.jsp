@@ -16,7 +16,7 @@
         body{
             background: #f2f2f2;
         }
-        #content{
+        .forum_content{
             border: 1px solid #cccccc;
             background: #ffffff;
             padding: 40px;
@@ -60,11 +60,20 @@
     </div>
     <div class="row">&nbsp;</div>
     <div class="row"><hr/></div>
-    <div class="row" id="content">
+    <div class="row forum_content">
         <h2>${forum.title}</h2>
         <p>2018年05月15日 18:31:03 <span class="pull-right">阅读：${forum.readingNum}</span></p>
         <hr />
-        ${forum.content}
+        <div style="min-height: 200px">
+            ${forum.content}
+        </div>
+    </div>
+
+    <div class="row forum_content">
+        <div class="form-group">
+            <textarea rows="4" class="form-control"></textarea>
+        </div>
+        <a href="#" class="btn btn-danger pull-right">发表评论</a>
     </div>
 </div>
 </body>

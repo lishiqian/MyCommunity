@@ -44,13 +44,17 @@ public class ForumController {
     public String forumList(@RequestParam(value = "userId",defaultValue = "1") Integer userId, Model model){
         List<Forum> forums = forumService.selectForumsByUserId(userId);
         model.addAttribute("forums",forums);
-        return "main";
+        return "forum/forum_list";
     }
 
     @RequestMapping(value = "/show_forum",produces = "application/json;charset=utf-8")
     public String showForum(int forumId,Model model){
+        //根据帖子id获取帖子内容
         Forum forum = forumService.selectForumsById(forumId);
         model.addAttribute("forum",forum);
+        //帖子阅读数增加1
+        forumService.addReaderNum(forumId);
+
         return "forum/show_forum";
     }
 }

@@ -11,4 +11,8 @@ public interface ForumService {
     List<Forum> selectForumsByUserId(Integer id);
 
     Forum selectForumsById(Integer id);
+
+    void addReaderNum(Integer forumId);
+
+    void addReaderNum(Integer forumId,Integer userId);
 }

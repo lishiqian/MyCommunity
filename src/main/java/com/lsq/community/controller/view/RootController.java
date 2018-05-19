@@ -18,6 +18,6 @@ public class RootController {
 
     @RequestMapping(value = "/main",produces = "application/json;charset=utf-8")
     public String main(){
-        return "main";
+        return "redirect:forum/forum_list";
     }
 }
