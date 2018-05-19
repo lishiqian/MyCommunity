@@ -2,8 +2,9 @@ package com.lsq.community.mapper;
 
 import com.lsq.community.po.User;
 import com.lsq.community.po.UserExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserMapper {
     int countByExample(UserExample example);

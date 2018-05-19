@@ -8,6 +8,8 @@
     <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="reading_num" property="readingNum" jdbcType="INTEGER" />
+    <result column="comments" property="comments" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.lsq.community.po.Forum" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
@@ -71,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, title, create_time, last_update_time, status, user_id
+    id, title, create_time, last_update_time, status, user_id, reading_num, comments
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -127,10 +129,12 @@
   <insert id="insert" parameterType="com.lsq.community.po.Forum" >
     insert into forum (id, title, create_time, 
       last_update_time, status, user_id, 
-      content)
+      reading_num, comments, content
+      )
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{lastUpdateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
-      #{content,jdbcType=LONGVARCHAR})
+      #{readingNum,jdbcType=INTEGER}, #{comments,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.lsq.community.po.Forum" >
     insert into forum
@@ -152,6 +156,12 @@
       </if>
       <if test="userId != null" >
         user_id,
+      </if>
+      <if test="readingNum != null" >
+        reading_num,
+      </if>
+      <if test="comments != null" >
+        comments,
       </if>
       <if test="content != null" >
         content,
@@ -175,6 +185,12 @@
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="readingNum != null" >
+        #{readingNum,jdbcType=INTEGER},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=INTEGER},
       </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
@@ -208,6 +224,12 @@
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
+      <if test="record.readingNum != null" >
+        reading_num = #{record.readingNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.comments != null" >
+        comments = #{record.comments,jdbcType=INTEGER},
+      </if>
       <if test="record.content != null" >
         content = #{record.content,jdbcType=LONGVARCHAR},
       </if>
@@ -224,6 +246,8 @@
       last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
       status = #{record.status,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
+      reading_num = #{record.readingNum,jdbcType=INTEGER},
+      comments = #{record.comments,jdbcType=INTEGER},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -236,7 +260,9 @@
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
       status = #{record.status,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER}
+      user_id = #{record.userId,jdbcType=INTEGER},
+      reading_num = #{record.readingNum,jdbcType=INTEGER},
+      comments = #{record.comments,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -259,6 +285,12 @@
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
       </if>
+      <if test="readingNum != null" >
+        reading_num = #{readingNum,jdbcType=INTEGER},
+      </if>
+      <if test="comments != null" >
+        comments = #{comments,jdbcType=INTEGER},
+      </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -272,6 +304,8 @@
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
+      reading_num = #{readingNum,jdbcType=INTEGER},
+      comments = #{comments,jdbcType=INTEGER},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -281,7 +315,9 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=INTEGER},
-      user_id = #{userId,jdbcType=INTEGER}
+      user_id = #{userId,jdbcType=INTEGER},
+      reading_num = #{readingNum,jdbcType=INTEGER},
+      comments = #{comments,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

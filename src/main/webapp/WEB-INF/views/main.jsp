@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>我的博客</title>
 
     <!-- 引入jquery的js文件 -->
     <script type="text/javascript" src="../util/jquery/jquery-3.3.1.min.js"></script>
@@ -51,9 +53,9 @@
     <div class="container">
         <div class="row">
             <h2><span class="text-danger">&nbsp;&nbsp;创作中心</span>
-                <div class="button btn-info btn-lg pull-right">
+                <a class="button btn-info btn-lg pull-right" href="/forum/add_forum_view">
                     <span class="glyphicon glyphicon-plus"> 写博客</span>
-                </div>
+                </a>
             </h2>
         </div>
         <div class="row">&nbsp;</div>
@@ -71,48 +73,23 @@
                 <h4>文章管理</h4>
                 <hr/>
                 <div class="container-fluid" >
-                    <div class="row" style="border-bottom: 1px solid #218838">
+                    <c:forEach items="${forums}" var="item" varStatus="i">
+                        <div class="row" style="border-bottom: 1px solid #218838">
+                            <p>&nbsp;</p>
+                            <p><h4>${item.title}</h4></p>
+                            <p><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${item.lastUpdateTime}" type="both"/> &nbsp;&nbsp;  阅读：${item.readingNum} 评论：${item.comments}
+                                <span class="pull-right"><small><a target="_blank" href="/forum/show_forum?forumId=${item.id}">查看</a>|<a href="#">删除</a></small></span>
+                            </p>
+                        </div>
+                    </c:forEach>
+                    <!--<div class="row" style="border-bottom: 1px solid #218838">
                         <p>&nbsp;</p>
                         <p><h4>leetcode 125. Valid Palindrome解析</h4></p>
                         <p>2018-03-26 18:44 阅读：25 评论：14
                             <span class="pull-right"><small><a href="#">查看</a>|<a href="#">删除</a></small></span>
                         </p>
-                    </div>
-                    <div class="row" style="border-bottom: 1px solid #218838">
-                        <p>&nbsp;</p>
-                        <p><h4>leetcode 125. Valid Palindrome解析</h4></p>
-                        <p>2018-03-26 18:44 阅读：25 评论：14
-                            <span class="pull-right"><small><a href="#">查看</a>|<a href="#">删除</a></small></span>
-                        </p>
-                    </div>
-                    <div class="row" style="border-bottom: 1px solid #218838">
-                        <p>&nbsp;</p>
-                        <p><h4>leetcode 125. Valid Palindrome解析</h4></p>
-                        <p>2018-03-26 18:44 阅读：25 评论：14
-                            <span class="pull-right"><small><a href="#">查看</a>|<a href="#">删除</a></small></span>
-                        </p>
-                    </div>
-                    <div class="row" style="border-bottom: 1px solid #218838">
-                        <p>&nbsp;</p>
-                        <p><h4>leetcode 125. Valid Palindrome解析</h4></p>
-                        <p>2018-03-26 18:44 阅读：25 评论：14
-                            <span class="pull-right"><small><a href="#">查看</a>|<a href="#">删除</a></small></span>
-                        </p>
-                    </div>
-                    <div class="row" style="border-bottom: 1px solid #218838">
-                        <p>&nbsp;</p>
-                        <p><h4>leetcode 125. Valid Palindrome解析</h4></p>
-                        <p>2018-03-26 18:44 阅读：25 评论：14
-                            <span class="pull-right"><small><a href="#">查看</a>|<a href="#">删除</a></small></span>
-                        </p>
-                    </div>
-                    <div class="row" style="border-bottom: 1px solid #218838">
-                        <p>&nbsp;</p>
-                        <p><h4>leetcode 125. Valid Palindrome解析</h4></p>
-                        <p>2018-03-26 18:44 阅读：25 评论：14
-                            <span class="pull-right"><small><a href="#">查看</a>|<a href="#">删除</a></small></span>
-                        </p>
-                    </div>
+                    </div>-->
+
                 </div>
 
             </div>

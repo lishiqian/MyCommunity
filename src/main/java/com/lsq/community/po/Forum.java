@@ -15,6 +15,10 @@ public class Forum {
 
     private Integer userId;
 
+    private Integer readingNum;
+
+    private Integer comments;
+
     private String content;
 
     public Integer getId() {
@@ -63,6 +67,22 @@ public class Forum {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getReadingNum() {
+        return readingNum;
+    }
+
+    public void setReadingNum(Integer readingNum) {
+        this.readingNum = readingNum;
+    }
+
+    public Integer getComments() {
+        return comments;
+    }
+
+    public void setComments(Integer comments) {
+        this.comments = comments;
     }
 
     public String getContent() {

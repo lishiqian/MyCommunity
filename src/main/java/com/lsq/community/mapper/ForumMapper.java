@@ -2,8 +2,9 @@ package com.lsq.community.mapper;
 
 import com.lsq.community.po.Forum;
 import com.lsq.community.po.ForumExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ForumMapper {
     int countByExample(ForumExample example);

@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>我的博客</title>
     <!-- 引入jquery的js文件 -->
-    <script type="text/javascript" src="../util/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../util/jquery/jquery-3.3.1.min.js"></script>
     <!-- 引入bootstrap的js文件 -->
-    <script type="text/javascript" src="../util/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../util/bootstrap/js/bootstrap.js"></script>
     <!-- 引入bootstrap的css文件 -->
-    <link rel="stylesheet" type="text/css" href="../util/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../util/bootstrap/css/bootstrap.css">
     <!-- 配置文件 -->
-    <script type="text/javascript" src="../util/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="../../util/ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
-    <script type="text/javascript" src="../util/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript" src="../../util/ueditor/ueditor.all.js"></script>
 
     <style type="text/css">
         body{
