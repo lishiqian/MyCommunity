@@ -1,7 +1,9 @@
 package com.lsq.community.controller.api;
 
 import com.lsq.community.common.ErrorCode;
+import com.lsq.community.custom.ForumCommentCustom;
 import com.lsq.community.po.Forum;
+import com.lsq.community.service.ForumCommentService;
 import com.lsq.community.service.ForumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class ForumController {
 
     @Autowired
     public ForumService forumService;
+
+    @Autowired
+    private ForumCommentService forumCommentService;
 
 
     //http://localhost:8080/forum/add_forum_view
@@ -51,9 +56,15 @@ public class ForumController {
     public String showForum(int forumId,Model model){
         //根据帖子id获取帖子内容
         Forum forum = forumService.selectForumsById(forumId);
-        model.addAttribute("forum",forum);
+
+        //获取评论内容
+        List<ForumCommentCustom> forumCommentCustoms = forumCommentService.selectForumCommentsByForunId(forumId);
+
         //帖子阅读数增加1
         forumService.addReaderNum(forumId);
+
+        model.addAttribute("forum",forum);
+        model.addAttribute("forumComments",forumCommentCustoms);
 
         return "forum/show_forum";
     }

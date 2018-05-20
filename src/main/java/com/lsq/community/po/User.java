@@ -19,6 +19,8 @@ public class User {
 
     private String regIp;
 
+    private String headImg;
+
     public Integer getId() {
         return id;
     }
@@ -81,5 +83,13 @@ public class User {
 
     public void setRegIp(String regIp) {
         this.regIp = regIp == null ? null : regIp.trim();
+    }
+
+    public String getHeadImg() {
+        return headImg;
+    }
+
+    public void setHeadImg(String headImg) {
+        this.headImg = headImg == null ? null : headImg.trim();
     }
 }
