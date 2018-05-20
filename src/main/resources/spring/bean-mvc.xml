@@ -21,6 +21,7 @@
 
     <!--对静态资源文件的访问-->
     <mvc:resources mapping="/util/**" location="/WEB-INF/util/" />
+    <mvc:resources mapping="/img/**" location="/WEB-INF/img/" />
 
     <!-- 配置jsp 显示ViewResolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

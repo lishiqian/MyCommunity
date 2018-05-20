@@ -60,4 +60,12 @@ public class ForumServiceImpl implements ForumService{
     public void addReaderNum(Integer forumId, Integer userId) {
         addReaderNum(forumId);
     }
+
+    @Override
+    public void addCommentNum(Integer forumId) {
+        Forum forum = forumMapper.selectByPrimaryKey(forumId);
+        forum.setComments(forum.getComments()+1);
+        forumMapper.updateByPrimaryKey(forum);
+        logger.info("帖子id为:" + forumId + ",帖子评论数+1，评论数为：" + forum.getComments());
+    }
 }

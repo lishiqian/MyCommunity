@@ -15,4 +15,6 @@ public interface ForumService {
     void addReaderNum(Integer forumId);
 
     void addReaderNum(Integer forumId,Integer userId);
+
+    void addCommentNum(Integer forumId);
 }
