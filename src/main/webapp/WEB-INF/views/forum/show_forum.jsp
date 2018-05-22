@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
     <meta charset="UTF-8">
@@ -13,17 +13,19 @@
     <link rel="stylesheet" type="text/css" href="../../util/bootstrap/css/bootstrap.css">
 
     <style type="text/css">
-        body{
+        body {
             background: #f2f2f2;
         }
-        .forum_content{
+
+        .forum_content {
             border: 1px solid #cccccc;
             background: #ffffff;
             padding-left: 40px;
             padding-right: 40px;
             padding-top: 40px;
         }
-        .user-head{
+
+        .user-head {
             height: 50px;
             width: 50px;
             border: solid 2px #2dffc2;
@@ -36,35 +38,19 @@
         $(function () {
             $("#commit_comment").click(function () {
                 var comment_content = $("#commit_content").val();
-                $.post("/forum_comment/add_forum_comment", {content:comment_content,forumId:${forum.id},createUserId:1}, function () {});
+                $.post("/forum_comment/add_forum_comment", {
+                    content: comment_content,
+                    forumId:${forum.id},
+                    createUserId: 1
+                }, function () {
+                });
             });
         });
     </script>
 </head>
 <body>
-<!--导航栏-->
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">技术论坛</a>
-        </div>
-        <div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">博客</a></li>
-                <li><a href="#">学院</a></li>
-                <li><a href="#">论坛</a></li>
-                <li><a href="#">发现</a></li>
-                <li><a href="#">我的博客</a></li>
-            </ul>
-        </div>
-        <div>
-            <ul class="nav navbar-nav pull-right">
-                <li><a href="#">登录</a></li>
-                <li><a href="#">注册</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="../head.jsp" flush="true"></jsp:include>
+
 
 <!-- 主体 -->
 <div class="container">
@@ -76,11 +62,14 @@
         </h2>
     </div>
     <div class="row">&nbsp;</div>
-    <div class="row"><hr/></div>
+    <div class="row">
+        <hr/>
+    </div>
     <div class="row forum_content">
         <h2>${forum.title}</h2>
-        <p><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${forum.lastUpdateTime}" type="both"/> <span class="pull-right">阅读：${forum.readingNum}</span></p>
-        <hr />
+        <p><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${forum.lastUpdateTime}" type="both"/> <span
+                class="pull-right">阅读：${forum.readingNum}</span></p>
+        <hr/>
         <div style="min-height: 200px">
             ${forum.content}
         </div>
@@ -97,13 +86,14 @@
             <hr/>
             <div class="row container">
                 <c:forEach items="${forumComments}" var="item" varStatus="i">
-                    <div class="row" >
+                    <div class="row">
                         <div class="row container" style="padding-left: 50px">
                             <img src="../../${item.user.headImg}" class="user-head"/>
                             &nbsp;&nbsp;&nbsp;
                             <span style="font-size: 20px">${item.user.username}</span>
                             &nbsp;&nbsp;&nbsp;
-                            <span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${item.forumComment.createDate}" type="both"/></span>
+                            <span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${item.forumComment.createDate}"
+                                                  type="both"/></span>
                         </div>
                         <div class="row container">
                             <p style="padding-left: 100px">${item.forumComment.content}</p>
@@ -112,17 +102,17 @@
                     </div>
                 </c:forEach>
                 <%--<div class="row" >--%>
-                    <%--<div class="row container" style="padding-left: 50px">--%>
-                        <%--<img src="../../img/head1.jpeg" class="user-head"/>--%>
-                        <%--&nbsp;&nbsp;&nbsp;--%>
-                        <%--<span style="font-size: 20px">不好玩</span>--%>
-                        <%--&nbsp;&nbsp;&nbsp;--%>
-                        <%--<span>2018-05-19 11:48:06</span>--%>
-                    <%--</div>--%>
-                    <%--<div class="row container">--%>
-                        <%--<p style="padding-left: 100px">哈哈哈哈哈哈哈反倒是所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所哈哈哈哈哈哈哈反倒是所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所</p>--%>
-                    <%--</div>--%>
-                    <%--<hr/>--%>
+                <%--<div class="row container" style="padding-left: 50px">--%>
+                <%--<img src="../../img/head1.jpeg" class="user-head"/>--%>
+                <%--&nbsp;&nbsp;&nbsp;--%>
+                <%--<span style="font-size: 20px">不好玩</span>--%>
+                <%--&nbsp;&nbsp;&nbsp;--%>
+                <%--<span>2018-05-19 11:48:06</span>--%>
+                <%--</div>--%>
+                <%--<div class="row container">--%>
+                <%--<p style="padding-left: 100px">哈哈哈哈哈哈哈反倒是所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所哈哈哈哈哈哈哈反倒是所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所</p>--%>
+                <%--</div>--%>
+                <%--<hr/>--%>
                 <%--</div>--%>
             </div>
         </div>

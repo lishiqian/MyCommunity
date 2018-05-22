@@ -20,4 +20,10 @@ public class RootController {
     public String main(){
         return "redirect:forum/forum_list";
     }
+
+    @RequestMapping("/ueditor_controller")
+    public String ueditor(){
+        System.out.println("------------------------------");
+        return "forward:WEB-INF/util/ueditor/jsp/controller.jsp";
+    }
 }
