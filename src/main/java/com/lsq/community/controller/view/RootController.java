@@ -21,6 +21,10 @@ public class RootController {
         return "redirect:forum/forum_list";
     }
 
+    /**
+     *
+     * @return
+     */
     @RequestMapping("/ueditor_controller")
     public String ueditor(){
         System.out.println("------------------------------");

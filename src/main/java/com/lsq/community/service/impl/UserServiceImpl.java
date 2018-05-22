@@ -1,10 +1,14 @@
 package com.lsq.community.service.impl;
 
+import com.lsq.community.common.ErrorCode;
 import com.lsq.community.mapper.UserMapper;
 import com.lsq.community.po.User;
+import com.lsq.community.po.UserExample;
 import com.lsq.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author lishiqian
@@ -22,4 +26,15 @@ public class UserServiceImpl implements UserService {
     public User selectUserById(Integer id) {
         return userMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public User selectUsername(String username) {
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andUsernameEqualTo(username);
+        List<User> users = userMapper.selectByExample(userExample);
+        return users.isEmpty() ? null:users.get(0);
+    }
+
+
 }

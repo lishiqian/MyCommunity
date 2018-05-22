@@ -70,7 +70,7 @@
         <p><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${forum.lastUpdateTime}" type="both"/> <span
                 class="pull-right">阅读：${forum.readingNum}</span></p>
         <hr/>
-        <div style="min-height: 200px">
+        <div style="min-height: 200px;overflow: hidden">
             ${forum.content}
         </div>
     </div>

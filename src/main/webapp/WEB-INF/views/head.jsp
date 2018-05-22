@@ -5,7 +5,19 @@
     <title>Title</title>
     <script type="text/javascript" src="../util/jquery/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="../util/layer/layer.js"></script>
-
+    <script type="text/javascript">
+        $(function () {
+            $("#login").click(function () {
+                layer.open({
+                    title:'用户登录',
+                    type: 2,
+                    area: ['360px', '300px'],
+                    skin: 'layui-layer-rim', //加上边框
+                    content: ['/show_login', 'no']
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <!--导航栏-->
@@ -25,7 +37,7 @@
             </div>
             <div>
                 <ul class="nav navbar-nav pull-right">
-                    <li><a href="#">登录</a></li>
+                    <li><a href="#" id="login">登录</a></li>
                     <li><a href="#">注册</a></li>
                 </ul>
             </div>

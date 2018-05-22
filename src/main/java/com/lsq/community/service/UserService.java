@@ -1,5 +1,6 @@
 package com.lsq.community.service;
 
+import com.lsq.community.common.ErrorCode;
 import com.lsq.community.po.User;
 
 /**
@@ -8,4 +9,6 @@ import com.lsq.community.po.User;
  */
 public interface UserService {
     User selectUserById(Integer id);
+
+    User selectUsername(String username);
 }
