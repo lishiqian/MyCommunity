@@ -3,8 +3,16 @@
 <html>
 <head>
     <title>Title</title>
-    <script type="text/javascript" src="../util/jquery/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="../util/layer/layer.js"></script>
+    <script type="text/javascript" src="../../util/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../util/layer/layer.js"></script>
+    <style type="text/css">
+        .user-head-img {
+            height: 35px;
+            width: 35px;
+            border: solid 2px #2dffc2;
+            border-radius: 50%;
+        }
+    </style>
     <script type="text/javascript">
         $(function () {
             $("#login").click(function () {
@@ -37,8 +45,12 @@
             </div>
             <div>
                 <ul class="nav navbar-nav pull-right">
-                    <li><a href="#" id="login">登录</a></li>
-                    <li><a href="#">注册</a></li>
+                    <form class="navbar-form navbar-right visible-lg-block">
+                        <div class="form-group">
+                            <a href="#" ><img src="../../${login_user.headImg}" class="user-head-img"/> ${login_user.username} &nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <input type="submit" class="btn btn-danger btn-sm" value="退出登陆">
+                        </div>
+                    </form>
                 </ul>
             </div>
         </div>

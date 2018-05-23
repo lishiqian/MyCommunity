@@ -26,7 +26,7 @@
     </style>
 </head>
 <body>
-<jsp:include page="../head.jsp" flush="true"></jsp:include>
+<jsp:include page="/head" flush="true"></jsp:include>
 
 
 <!-- 主体 -->
@@ -78,6 +78,9 @@
             </div>
 
         </div>
+    </div>
+    <div class="row">
+        <div style="height:200px"></div>
     </div>
 </div>
 </body>

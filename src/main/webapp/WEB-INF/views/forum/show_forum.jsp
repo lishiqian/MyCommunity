@@ -49,7 +49,7 @@
     </script>
 </head>
 <body>
-<jsp:include page="../head.jsp" flush="true"></jsp:include>
+<jsp:include page="/head" flush="true"></jsp:include>
 
 
 <!-- 主体 -->

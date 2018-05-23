@@ -17,7 +17,7 @@ public class LoginController {
     private UserService userService;
 
     @RequestMapping("/show_login")
-    public String show(){
+    public String showLogin(){
         return "user/login";
     }
 
@@ -30,7 +30,15 @@ public class LoginController {
         }else if(!user.getPassword().equals(passwd)){
             return ErrorCode.bulid(202,"密码错误",null).toString();
         }
-        session.setAttribute("user",user);
+        session.setAttribute("login_user",user);
         return ErrorCode.ok(null).toString();
     }
+
+
+    @RequestMapping("/show_register")
+    public String showRegister(){
+        return "user/register";
+    }
+
+
 }
