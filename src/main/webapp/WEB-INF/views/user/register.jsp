@@ -19,8 +19,36 @@
     <script type="text/javascript">
         $(function () {
             $("#login").click(function () {
+                var email = $("#email").val();
                 var username = $("#username").val();
                 var passwd = $("#passwd").val();
+                var confirm_passwd = $("#confirm_passwd").val();
+                
+                if(!email){
+                    $("#remind").text("请输入邮箱");
+                    return;
+                }
+                if(!username){
+                    $("#remind").text("请输入用户名");
+                    return;
+                }
+                if(!passwd){
+                    $("#remind").text("请输入密码");
+                    return;
+                }
+                
+                if(passwd != confirm_passwd){
+                    $("#remind").text("两次密码输入不一致");
+                    return;
+                }
+                
+                $.post("/register",{email:email,username:username,passwd:passwd},function (data) {
+                    if(data.code == 200){
+                        alert("注册成功");
+                    }else{
+                        $("#remind").text(data.message);
+                    }
+                });
             });
         });
     </script>

@@ -11,4 +11,8 @@ public interface UserService {
     User selectUserById(Integer id);
 
     User selectUsername(String username);
+
+    boolean selectEmailExsit(String email);
+
+    void addUser(User user);
 }

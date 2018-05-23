@@ -36,5 +36,24 @@ public class UserServiceImpl implements UserService {
         return users.isEmpty() ? null:users.get(0);
     }
 
+    /**
+     * 判断emile是否存在数据库
+     * @param email
+     * @return
+     */
+    @Override
+    public boolean selectEmailExsit(String email) {
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andEmailEqualTo(email);
+        List<User> users = userMapper.selectByExample(userExample);
+        return !users.isEmpty();
+    }
+
+    @Override
+    public void addUser(User user) {
+        userMapper.insert(user);
+    }
+
 
 }
