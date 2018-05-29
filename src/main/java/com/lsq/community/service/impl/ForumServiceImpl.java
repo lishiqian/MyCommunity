@@ -1,6 +1,8 @@
 package com.lsq.community.service.impl;
 
+import com.lsq.community.custom.ForumUserCustom;
 import com.lsq.community.mapper.ForumMapper;
+import com.lsq.community.mapper.UserMapper;
 import com.lsq.community.po.Forum;
 import com.lsq.community.po.ForumExample;
 import com.lsq.community.service.ForumService;
@@ -9,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("forumService")
@@ -18,6 +21,9 @@ public class ForumServiceImpl implements ForumService{
 
     @Autowired
     private ForumMapper forumMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public void addForum(Forum forum) {
@@ -35,6 +41,25 @@ public class ForumServiceImpl implements ForumService{
         ForumExample.Criteria criteria = forumExample.createCriteria();
         criteria.andUserIdEqualTo(id);
         return forumMapper.selectByExample(forumExample);
+    }
+
+    //主页论坛帖子列表查询
+    @Override
+    public List<ForumUserCustom> selectForumsOrderByReadingNum() {
+        ForumExample forumExample = new ForumExample();
+        forumExample.setOrderByClause("reading_num DESC");
+        List<Forum> forums = forumMapper.selectByExample(forumExample);
+
+        List<ForumUserCustom> forumUserCustoms = new ArrayList<ForumUserCustom>(forums.size());
+        for (Forum forum : forums) {
+            ForumUserCustom forumUserCustom = new ForumUserCustom();
+            forumUserCustom.setForum(forum);
+            //根据用户帖子创建id查询用户信息
+            forumUserCustom.setUser(userMapper.selectByPrimaryKey(forum.getUserId()));
+
+            forumUserCustoms.add(forumUserCustom);
+        }
+        return forumUserCustoms;
     }
 
     /**

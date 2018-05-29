@@ -2,6 +2,7 @@ package com.lsq.community.controller.api;
 
 import com.lsq.community.common.ErrorCode;
 import com.lsq.community.custom.ForumCommentCustom;
+import com.lsq.community.custom.ForumUserCustom;
 import com.lsq.community.po.Forum;
 import com.lsq.community.service.ForumCommentService;
 import com.lsq.community.service.ForumService;
@@ -52,6 +53,12 @@ public class ForumController {
         return "forum/forum_list";
     }
 
+    /**
+     * 帖子展示
+     * @param forumId
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/show_forum",produces = "application/json;charset=utf-8")
     public String showForum(int forumId,Model model){
         //根据帖子id获取帖子内容
@@ -67,5 +74,16 @@ public class ForumController {
         model.addAttribute("forumComments",forumCommentCustoms);
 
         return "forum/show_forum";
+    }
+
+    /**
+     * 论坛主页
+     * @return
+     */
+    @RequestMapping("/forum_main")
+    public String forumMain(Model model){
+        List<ForumUserCustom> forumUserCustoms = forumService.selectForumsOrderByReadingNum();
+        model.addAttribute("forumUserCustoms",forumUserCustoms);
+        return "main";
     }
 }
