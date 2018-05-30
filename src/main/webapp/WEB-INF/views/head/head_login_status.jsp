@@ -47,8 +47,10 @@
                 <ul class="nav navbar-nav pull-right">
                     <form class="navbar-form navbar-right visible-lg-block">
                         <div class="form-group">
-                            <a href="#" ><img src="../../${login_user.headImg}" class="user-head-img"/> ${login_user.username} &nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <%--<input type="submit" class="btn btn-danger btn-sm" value="退出登陆">--%>
+                            <img src="../../${login_user.headImg}" class=" user-head-img"/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="/user/show_user" >${login_user.username}</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/clean_user" class="btn btn-danger btn-sm">退出登陆</a>
                         </div>
                     </form>

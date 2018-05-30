@@ -26,4 +26,14 @@ public class UserController {
         User user = userService.selectUserById(id);
         return ErrorCode.ok(user).toString();
     }
+
+    @RequestMapping("/show_user")
+    public String showUser(){
+        return "user/show_user";
+    }
+
+    @RequestMapping("/edit_user_view")
+    public String editUserView(){
+        return "user/edit_user";
+    }
 }
