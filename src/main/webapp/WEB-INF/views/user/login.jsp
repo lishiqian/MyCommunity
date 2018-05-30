@@ -13,10 +13,10 @@
     <script type="text/javascript">
         $(function () {
             $("#login").click(function () {
-                var username = $("#username").val();
+                var email = $("#email").val();
                 var passwd = $("#passwd").val();
-                if(username && passwd){
-                    $.post("/login",{username:username,passwd:passwd},function (data) {
+                if(email && passwd){
+                    $.post("/login",{email:email,passwd:passwd},function (data) {
                         if(data.code == 200){
                             $("#remind").text("登录成功");
                             window.parent.window.location.reload();
@@ -24,7 +24,7 @@
                             $("#remind").text(data.message);
                         }
                     })
-                }else if(username){
+                }else if(email){
                     $("#remind").text("密码不能为空");
                 }else{
                     $("#remind").text("用户名不能为空");
@@ -41,7 +41,7 @@
             <div class="col-md-9">
                 <div class="form-group">
                     <i class="fa fa-user fa-lg"></i>
-                    <input class="form-control required" type="text" placeholder="Username" id="username" name="username" autofocus="autofocus" maxlength="20"/>
+                    <input class="form-control required" type="text" placeholder="Email" id="email" name="email" autofocus="autofocus" maxlength="20"/>
                 </div>
                 <div class="form-group">
                     <i class="fa fa-lock fa-lg"></i>

@@ -26,10 +26,10 @@ public class LoginController {
 
     @RequestMapping(value = "/login",produces = "application/json;charset=utf-8")
     @ResponseBody
-    public String login(String username, String passwd, HttpSession session){
-        User user = userService.selectUsername(username);
+    public String login(String email, String passwd, HttpSession session){
+        User user = userService.selectUsername(email);
         if(user == null){
-            return ErrorCode.bulid(201,"用户名不存在",null).toString();
+            return ErrorCode.bulid(201,"该邮箱未注册",null).toString();
         }else if(!user.getPassword().equals(passwd)){
             return ErrorCode.bulid(202,"密码错误",null).toString();
         }
@@ -65,6 +65,14 @@ public class LoginController {
         userService.addUser(user);
 
         return ErrorCode.ok(null).toString();
+    }
+
+
+
+    @RequestMapping("clean_user")
+    public String cleanUser(HttpSession session){
+        session.removeAttribute("login_user");
+        return "redirect:/main";
     }
 
 

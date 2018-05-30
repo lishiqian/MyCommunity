@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
     <meta charset="UTF-8">
-    <title>我的博客</title>
+    <title>博客首页</title>
 
     <!-- 引入jquery的js文件 -->
     <script type="text/javascript" src="../util/jquery/jquery-3.3.1.min.js"></script>

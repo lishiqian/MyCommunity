@@ -48,7 +48,8 @@
                     <form class="navbar-form navbar-right visible-lg-block">
                         <div class="form-group">
                             <a href="#" ><img src="../../${login_user.headImg}" class="user-head-img"/> ${login_user.username} &nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <input type="submit" class="btn btn-danger btn-sm" value="退出登陆">
+                            <%--<input type="submit" class="btn btn-danger btn-sm" value="退出登陆">--%>
+                            <a href="/clean_user" class="btn btn-danger btn-sm">退出登陆</a>
                         </div>
                     </form>
                 </ul>

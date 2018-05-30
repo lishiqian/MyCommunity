@@ -28,10 +28,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selectUsername(String username) {
+    public User selectUsername(String email) {
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
-        criteria.andUsernameEqualTo(username);
+        criteria.andEmailEqualTo(email);
         List<User> users = userMapper.selectByExample(userExample);
         return users.isEmpty() ? null:users.get(0);
     }

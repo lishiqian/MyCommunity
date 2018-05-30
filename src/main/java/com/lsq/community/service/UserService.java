@@ -10,7 +10,7 @@ import com.lsq.community.po.User;
 public interface UserService {
     User selectUserById(Integer id);
 
-    User selectUsername(String username);
+    User selectUsername(String email);
 
     boolean selectEmailExsit(String email);
 

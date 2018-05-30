@@ -4,6 +4,7 @@ import com.lsq.community.common.ErrorCode;
 import com.lsq.community.custom.ForumCommentCustom;
 import com.lsq.community.custom.ForumUserCustom;
 import com.lsq.community.po.Forum;
+import com.lsq.community.po.User;
 import com.lsq.community.service.ForumCommentService;
 import com.lsq.community.service.ForumService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -47,7 +49,14 @@ public class ForumController {
 
 
     @RequestMapping(value = "/forum_list",produces = "application/json;charset=utf-8")
-    public String forumList(@RequestParam(value = "userId",defaultValue = "1") Integer userId, Model model){
+    public String forumList(HttpSession session, Model model){
+        //从session中取出登录的用户id
+        User user = (User) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/main?open_login=ture";
+        }
+        Integer userId = user.getId();
+
         List<Forum> forums = forumService.selectForumsByUserId(userId);
         model.addAttribute("forums",forums);
         return "forum/forum_list";

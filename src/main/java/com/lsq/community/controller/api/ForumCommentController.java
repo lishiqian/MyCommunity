@@ -1,6 +1,7 @@
 package com.lsq.community.controller.api;
 
 import com.lsq.community.po.ForumComment;
+import com.lsq.community.po.User;
 import com.lsq.community.service.ForumCommentService;
 import com.lsq.community.service.ForumService;
 import com.lsq.community.service.impl.ForumServiceImpl;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 @Controller
@@ -22,7 +24,12 @@ public class ForumCommentController {
     private ForumService forumService;
 
     @RequestMapping("/add_forum_comment")
-    public String addForumComment(ForumComment forumComment){
+    public String addForumComment(ForumComment forumComment, HttpSession session){
+        //如果用户未登录或者用户登录id和创建登录id不同
+        User user = (User) session.getAttribute("login_user");
+        if(user == null || user.getId() != forumComment.getCreateUserId()){
+            return "redirect:/forum/forum_list?open_login=ture";
+        }
         //保存评论内容
         forumComment.setCreateDate(new Date());
         forumComment.setStatus(1);
