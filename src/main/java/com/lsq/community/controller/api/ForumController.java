@@ -32,7 +32,7 @@ public class ForumController {
     //http://localhost:8080/forum/add_forum_view
     @RequestMapping(value = "/add_forum_view",produces = "application/json;charset=utf-8")
     public String addForumView(){
-        return "forum/eidt_forum";
+        return "forum/forum_edit";
     }
 
     @RequestMapping(value = "/add_forum",produces = "application/json;charset=utf-8")
@@ -83,7 +83,7 @@ public class ForumController {
         model.addAttribute("forum",forum);
         model.addAttribute("forumComments",forumCommentCustoms);
 
-        return "forum/show_forum";
+        return "forum/forum_show";
     }
 
     /**

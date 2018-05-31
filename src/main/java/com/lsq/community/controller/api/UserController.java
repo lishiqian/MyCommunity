@@ -4,7 +4,6 @@ import com.lsq.community.common.ErrorCode;
 import com.lsq.community.po.User;
 import com.lsq.community.service.UserService;
 import com.lsq.community.util.CommonUtil;
-import com.lsq.community.util.JsonUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,12 +41,12 @@ public class UserController {
     public String showUser(HttpSession session, Model model){
         User loginUser = (User) session.getAttribute("login_user");
         model.addAttribute("userGender",CommonUtil.getUserGenderString(loginUser.getGender()));
-        return "user/show_user";
+        return "user/user_show";
     }
 
     @RequestMapping("/edit_user_view")
     public String editUserView(){
-        return "user/edit_user";
+        return "user/user_edit";
     }
 
 
