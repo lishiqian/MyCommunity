@@ -62,9 +62,12 @@
                         <p><h4>${item.title}</h4></p>
                         <p><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${item.lastUpdateTime}" type="both"/>
                             &nbsp;&nbsp; 阅读：${item.readingNum} 评论：${item.comments}
-                            <span class="pull-right"><small><a target="_blank"
-                                                               href="/forum/show_forum?forumId=${item.id}">查看</a>|<a
-                                    href="#">删除</a></small></span>
+                            <span class="pull-right">
+                                <small>
+                                    <a target="_blank" href="/forum/show_forum?forumId=${item.id}">查看</a>|
+                                    <a href="/forum/forum_delete?userId=${login_user.id}&forumId=${item.id}">删除</a>
+                                </small>
+                            </span>
                         </p>
                     </div>
                 </c:forEach>

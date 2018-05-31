@@ -26,7 +26,7 @@ public class RootController {
 
     @RequestMapping(value = "/main",produces = "application/json;charset=utf-8")
     public String main(){
-        return "redirect:forum/forum_main";
+        return "forward:forum/forum_main";
     }
 
     /**

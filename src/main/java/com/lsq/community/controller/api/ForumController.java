@@ -32,21 +32,54 @@ public class ForumController {
     //http://localhost:8080/forum/add_forum_view
     @RequestMapping(value = "/add_forum_view",produces = "application/json;charset=utf-8")
     public String addForumView(){
-        return "forum/forum_edit";
+        return "forum/forum_edit_add";
     }
 
     @RequestMapping(value = "/add_forum",produces = "application/json;charset=utf-8")
     @ResponseBody
-    public String addForum(Forum forum){
+    public String addForum(Forum forum,HttpSession session){
         forum.setCreateTime(new Date());
         forum.setLastUpdateTime(new Date());
-        forum.setUserId(1);
         forum.setComments(0);
         forum.setReadingNum(0);
+
+        User loginUser = (User) session.getAttribute("login_user");
+        forum.setUserId(loginUser.getId());
+
         forumService.addForum(forum);
         return ErrorCode.ok(null).toString();
     }
 
+    /**
+     * 展示帖子修改页面
+     * @param forumId
+     * @param model
+     * @return
+     */
+    @RequestMapping("/edit_forum_view")
+    public String editForumView(Integer forumId,Model model){
+        Forum forum = forumService.selectForumsById(forumId);
+        model.addAttribute("forum",forum);
+
+        return "forum/forum_edit_update";
+    }
+
+
+    /**
+     * 修改帖子
+     * @return
+     */
+    @RequestMapping("/update_forum")
+    public String updateForum(Forum forum){
+        forum.setLastUpdateTime(new Date());
+        forumService.updateForum(forum);
+
+        if(forum.getStatus().equals(1)){
+            return "redirect:/forum/forum_list?status=1";
+        }else {
+            return "redirect:/forum/forum_list?status=2";
+        }
+    }
 
     @RequestMapping(value = "/forum_list",produces = "application/json;charset=utf-8")
     public String forumList(@RequestParam(value = "status",defaultValue = "1") Integer status,HttpSession session, Model model){
@@ -59,8 +92,12 @@ public class ForumController {
 
         List<Forum> forums = forumService.selectForumsByUserIdAndStatus(userId,status);
         model.addAttribute("forums",forums);
-        model.addAttribute("status",status);
-        return "forum/forum_list";
+        if(status == 1)
+            return "forum/forum_list";
+        else if(status == 2)
+            return "forum/forum_list_draft";
+        else
+            return "forum/forum_list_grabage";
     }
 
     /**
@@ -95,5 +132,21 @@ public class ForumController {
         List<ForumUserCustom> forumUserCustoms = forumService.selectForumsOrderByReadingNum();
         model.addAttribute("forumUserCustoms",forumUserCustoms);
         return "main";
+    }
+
+    /**
+     * 帖子删除
+     * @param userId
+     * @param forumId
+     * @return
+     */
+    @RequestMapping("/forum_delete")
+    public String forumDelete(Integer userId,Integer forumId,HttpSession session){
+        User loginUser = (User) session.getAttribute("login_user");
+        if(loginUser.getId().equals(userId)){
+            forumService.deleteForum(forumId);
+        }
+
+        return "redirect:/forum/forum_list?status=3";
     }
 }

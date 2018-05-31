@@ -28,6 +28,7 @@
     <!--对静态资源文件的访问-->
     <mvc:resources mapping="/util/**" location="/WEB-INF/util/" />
     <mvc:resources mapping="/img/**" location="/WEB-INF/img/" />
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
     <mvc:resources mapping="/ueditor/jsp/upload/**" location="/ueditor/jsp/upload/" />
 
     <!-- 配置jsp 显示ViewResolver -->

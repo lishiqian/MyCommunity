@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service("forumService")
@@ -49,6 +50,8 @@ public class ForumServiceImpl implements ForumService{
         ForumExample.Criteria criteria = forumExample.createCriteria();
         criteria.andUserIdEqualTo(id);
         criteria.andStatusEqualTo(status);
+        //按照最后修改时间降序排序
+        forumExample.setOrderByClause("last_update_time DESC");
         return forumMapper.selectByExample(forumExample);
     }
 
@@ -101,5 +104,24 @@ public class ForumServiceImpl implements ForumService{
         forum.setComments(forum.getComments()+1);
         forumMapper.updateByPrimaryKey(forum);
         logger.info("帖子id为:" + forumId + ",帖子评论数+1，评论数为：" + forum.getComments());
+    }
+
+    @Override
+    public void deleteForum(Integer forumId) {
+        updateStatus(forumId,3);
+    }
+
+    @Override
+    public void updateForum(Forum forum) {
+        forumMapper.updateByPrimaryKeySelective(forum);
+    }
+
+    private void updateStatus(Integer forumId,Integer status){
+        Forum forum = new Forum();
+        forum.setId(forumId);
+        forum.setStatus(status);
+        forum.setLastUpdateTime(new Date());
+
+        forumMapper.updateByPrimaryKeySelective(forum);
     }
 }

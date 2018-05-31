@@ -44,7 +44,7 @@
                 
                 $.post("/register",{email:email,username:username,passwd:passwd},function (data) {
                     if(data.code == 200){
-                        alert("注册成功");
+                        window.parent.window.location.reload();
                     }else{
                         $("#remind").text(data.message);
                     }

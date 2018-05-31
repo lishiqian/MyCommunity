@@ -45,18 +45,20 @@
                 };
 
                 $.post("/forum/add_forum", prim, function (data) {
-                    alert(data);
+                    if(status == 1) {
+                        window.location.href = encodeURI("/forum/forum_list?status=1&lay_msg=帖子发布成功");
+                    }else if(status == 2){
+                        window.location.href = encodeURI("/forum/forum_list?status=2&lay_msg=帖子保存到草稿");
+                    }
                 })
             }
 
             $("#save").click(function () {
-                var status = 2;
-                commit(status);
+                commit(2);
             });
 
             $("#publish").click(function () {
-                var status = 1;
-                commit(status)
+                commit(1)
             });
         });
 

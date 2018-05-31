@@ -22,4 +22,8 @@ public interface ForumService {
     void addReaderNum(Integer forumId,Integer userId);
 
     void addCommentNum(Integer forumId);
+
+    void deleteForum(Integer forumId);
+
+    void updateForum(Forum forum);
 }
