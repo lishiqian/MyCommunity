@@ -8,6 +8,7 @@ import com.lsq.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -53,6 +54,26 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addUser(User user) {
         userMapper.insert(user);
+    }
+
+    /**
+     * 修改用户头像
+     * @param userId
+     * @param imgPath
+     */
+    @Override
+    public void updateUserImg(Integer userId, String imgPath) {
+        User user = new User();
+        user.setId(userId);
+        user.setHeadImg(imgPath);
+        user.setLastUpdateTime(new Date());
+
+        userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
+    public void updateUser(User loginUser) {
+        userMapper.updateByPrimaryKeySelective(loginUser);
     }
 
 

@@ -5,17 +5,29 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/controller/api/ForumController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/mapper" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/mapper/ForumCommentMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/mapper/ForumCommentMapper.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/mapper/ForumMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/mapper/ForumMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/mapper/UserMapper.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/mapper/UserMapper.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/po" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/po/Forum.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/po/Forum.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/po/ForumComment.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/po/ForumComment.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/po/ForumCommentExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/po/ForumCommentExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/po/ForumExample.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/po/ForumExample.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/po/User.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/po/User.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/po/UserExample.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lsq/community/po/UserExample.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mapper/ForumCommentMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mapper/ForumCommentMapper.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mapper/ForumMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mapper/ForumMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/sql/person.sql" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/img/head0.jpg" charset="GBK" />

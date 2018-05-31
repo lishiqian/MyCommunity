@@ -11,6 +11,8 @@ public interface ForumService {
 
     List<Forum> selectForumsByUserId(Integer id);
 
+    List<Forum> selectForumsByUserIdAndStatus(Integer id,Integer status);
+
     List<ForumUserCustom> selectForumsOrderByReadingNum();
 
     Forum selectForumsById(Integer id);

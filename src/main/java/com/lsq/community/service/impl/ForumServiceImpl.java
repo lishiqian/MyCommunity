@@ -43,6 +43,15 @@ public class ForumServiceImpl implements ForumService{
         return forumMapper.selectByExample(forumExample);
     }
 
+    @Override
+    public List<Forum> selectForumsByUserIdAndStatus(Integer id,Integer status) {
+        ForumExample forumExample = new ForumExample();
+        ForumExample.Criteria criteria = forumExample.createCriteria();
+        criteria.andUserIdEqualTo(id);
+        criteria.andStatusEqualTo(status);
+        return forumMapper.selectByExample(forumExample);
+    }
+
     //主页论坛帖子列表查询
     @Override
     public List<ForumUserCustom> selectForumsOrderByReadingNum() {

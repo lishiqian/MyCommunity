@@ -21,6 +21,8 @@ public class User {
 
     private String headImg;
 
+    private Integer gender;
+
     public Integer getId() {
         return id;
     }
@@ -91,5 +93,13 @@ public class User {
 
     public void setHeadImg(String headImg) {
         this.headImg = headImg == null ? null : headImg.trim();
+    }
+
+    public Integer getGender() {
+        return gender;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
     }
 }

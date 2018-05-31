@@ -83,10 +83,11 @@
     <div class="row" id="content">
         <div class="col-md-3">
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#">我的文章</a></li>
+                <li><a href="/user/show_user">我的信息</a></li>
+                <li class="active"><a href="/forum/forum_list?status=1">我的文章</a></li>
+                <li><a href="/forum/forum_list?status=2">我的草稿</a></li>
+                <li><a href="/forum/forum_list?status=3">回收站</a></li>
                 <li><a href="#">评论管理</a></li>
-                <li><a href="#">我的草稿</a></li>
-                <li><a href="#">回收站</a></li>
             </ul>
         </div>
         <div class="col-md-9" style="min-height: 500px">

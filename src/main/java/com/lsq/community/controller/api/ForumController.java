@@ -49,16 +49,17 @@ public class ForumController {
 
 
     @RequestMapping(value = "/forum_list",produces = "application/json;charset=utf-8")
-    public String forumList(HttpSession session, Model model){
+    public String forumList(@RequestParam(value = "status",defaultValue = "1") Integer status,HttpSession session, Model model){
         //从session中取出登录的用户id
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute("login_user");
         if(user == null){
-            return "redirect:/main?open_login=ture";
+            return  "redirect:/main?open_login=ture";
         }
         Integer userId = user.getId();
 
-        List<Forum> forums = forumService.selectForumsByUserId(userId);
+        List<Forum> forums = forumService.selectForumsByUserIdAndStatus(userId,status);
         model.addAttribute("forums",forums);
+        model.addAttribute("status",status);
         return "forum/forum_list";
     }
 

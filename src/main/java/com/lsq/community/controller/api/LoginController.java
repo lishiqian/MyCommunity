@@ -3,6 +3,7 @@ package com.lsq.community.controller.api;
 import com.lsq.community.common.ErrorCode;
 import com.lsq.community.po.User;
 import com.lsq.community.service.UserService;
+import com.lsq.community.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -52,7 +53,7 @@ public class LoginController {
             return ErrorCode.bulid(201,"Email已经存在",null).toString();
 
         //保存用户信息
-        String ip = getClientIp(request); //获取注册ip
+        String ip = CommonUtil.getClientIp(request); //获取注册ip
         User user = new User();
         user.setEmail(email);
         user.setUsername(username);
@@ -76,17 +77,5 @@ public class LoginController {
     }
 
 
-    private static String getClientIp(HttpServletRequest request) {
 
-        String remoteAddr = "";
-
-        if (request != null) {
-            remoteAddr = request.getHeader("X-FORWARDED-FOR");
-            if (remoteAddr == null || "".equals(remoteAddr)) {
-                remoteAddr = request.getRemoteAddr();
-            }
-        }
-
-        return remoteAddr;
-    }
 }

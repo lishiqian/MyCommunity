@@ -15,4 +15,13 @@ public interface UserService {
     boolean selectEmailExsit(String email);
 
     void addUser(User user);
+
+    /**
+     * 修改用户头像
+     * @param userId
+     * @param imgPath
+     */
+    void updateUserImg(Integer userId,String imgPath);
+
+    void updateUser(User loginUser);
 }
