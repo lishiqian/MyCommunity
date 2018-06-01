@@ -41,6 +41,10 @@ public class ErrorCode {
         return new ErrorCode(200,null,data);
     }
 
+    public static ErrorCode ok(){
+        return new ErrorCode(200,null,null);
+    }
+
     public static ErrorCode bulid(int code,String message,Object data){
         return new ErrorCode(code,message,data);
     }

@@ -38,11 +38,23 @@
         $(function () {
             $("#commit_comment").click(function () {
                 var comment_content = $("#commit_content").val();
+                if(!comment_content || comment_content.length == 0){
+                    layer.msg('请输入评论内容');
+                    return;
+                }
                 $.post("/forum_comment/add_forum_comment", {
                     content: comment_content,
                     forumId:${forum.id},
-                    createUserId: 1
-                }, function () {
+                }, function (data) {
+                    alert(data.code);
+                    if(data.code == 201){
+                        layer.msg("用户未登录");
+                    }
+
+                    if(data.code == 200){
+                        srcUrl = window.location.href;
+                        window.location.href = srcUrl + "&lay_msg=comment_success";
+                    }
                 });
             });
         });
@@ -80,7 +92,7 @@
             <textarea rows="4" class="form-control" id="commit_content"></textarea>
         </div>
         <div class="row">
-            <a href="#" class="btn btn-danger pull-right" id="commit_comment">发表评论</a>
+            <a href="javascript:void(0)" class="btn btn-danger pull-right" id="commit_comment">发表评论</a>
         </div>
         <div class="row">
             <hr/>
