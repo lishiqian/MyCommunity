@@ -52,9 +52,9 @@
 
                 $.post("/forum/update_forum", prim, function (data) {
                     if(status == 1) {
-                        window.location.href = encodeURI("/forum/forum_list?status=1&lay_msg=帖子发布成功");
+                        window.location.href = "/forum/forum_list?status=1&lay_msg=publish_success";
                     }else if(status == 2){
-                        window.location.href = encodeURI("/forum/forum_list?status=2&lay_msg=帖子保存到草稿");
+                        window.location.href = "/forum/forum_list?status=2&lay_msg=save_success";
                     }
                 })
             }

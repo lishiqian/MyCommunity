@@ -17,9 +17,17 @@ var getParam = function(key) {
 }
 
 
+//消息提示映射
+var layMsgMapper = {
+    "publish_success":"帖子发布成功",
+    "save_success":"帖子保存到草稿",
+    "delete_success":"删除成功"
+};
+
+
 
 $(function () {
    if(getParam("lay_msg")){
-       layer.msg(getParam("lay_msg"));
+       layer.msg(layMsgMapper[getParam("lay_msg")]);
    }
 });

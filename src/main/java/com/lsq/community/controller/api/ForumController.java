@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.List;
 
@@ -147,6 +148,6 @@ public class ForumController {
             forumService.deleteForum(forumId);
         }
 
-        return "redirect:/forum/forum_list?status=3";
+        return "redirect:/forum/forum_list?status=3&lay_msg=delete_success";
     }
 }

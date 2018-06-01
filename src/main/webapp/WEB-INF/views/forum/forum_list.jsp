@@ -22,8 +22,21 @@
             background: #ffffff;
             padding: 80px;
         }
-
     </style>
+
+    <script type="text/javascript">
+        var deleteForun = function(forumId,userId){
+            //信息框-例2
+            layer.msg('你确定要删除么？', {
+                time: 0 //不自动关闭
+                ,btn: ['确定', '取消']
+                ,yes: function(index){
+                    layer.close(index);
+                    window.location.href = "/forum/forum_delete?userId="+userId+"&forumId=" + forumId;
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <jsp:include page="/head" flush="true"></jsp:include>
@@ -65,7 +78,7 @@
                             <span class="pull-right">
                                 <small>
                                     <a target="_blank" href="/forum/show_forum?forumId=${item.id}">查看</a>|
-                                    <a href="/forum/forum_delete?userId=${login_user.id}&forumId=${item.id}">删除</a>
+                                    <a href="javascript:void(0)" onclick="deleteForun(${item.id},${item.userId})">删除</a>
                                 </small>
                             </span>
                         </p>
