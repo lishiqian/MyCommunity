@@ -35,6 +35,23 @@
     </style>
 
     <script type="text/javascript">
+        //移动光标到浏览器末尾
+        function cc()
+        {
+            var e = event.srcElement;
+            var r =e.createTextRange();
+            r.moveStart('character',e.value.length);
+            r.collapse(true);
+            r.select();
+        }
+        //回复评论
+        var reply = function (nick) {
+            $("#commit_content").val("@ " + nick + ":");
+        }
+
+
+
+
         $(function () {
             $("#commit_comment").click(function () {
                 var comment_content = $("#commit_content").val();
@@ -56,6 +73,17 @@
                         window.location.href = srcUrl + "&lay_msg=comment_success";
                     }
                 });
+            });
+
+
+            $(".comment_item_show").on({
+                mouseover : function(){
+                    $(this).find('a').removeClass("hidden");
+
+                },
+                mouseout : function(){
+                    $(this).find('a').addClass("hidden");
+                }
             });
         });
     </script>
@@ -87,9 +115,9 @@
         </div>
     </div>
 
-    <div class="row forum_content">
+    <div class="row forum_content" style="margin-bottom: 50px">
         <div class="row form-group">
-            <textarea rows="4" class="form-control" id="commit_content"></textarea>
+            <textarea rows="4" class="form-control" id="commit_content" onfocus="cc()"></textarea>
         </div>
         <div class="row">
             <a href="javascript:void(0)" class="btn btn-danger pull-right" id="commit_comment">发表评论</a>
@@ -98,7 +126,7 @@
             <hr/>
             <div class="row container">
                 <c:forEach items="${forumComments}" var="item" varStatus="i">
-                    <div class="row">
+                    <div class="row comment_item_show">
                         <div class="row container" style="padding-left: 50px">
                             <img src="../../${item.user.headImg}" class="user-head"/>
                             &nbsp;&nbsp;&nbsp;
@@ -106,6 +134,7 @@
                             &nbsp;&nbsp;&nbsp;
                             <span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${item.forumComment.createDate}"
                                                   type="both"/></span>
+                            <a href="#commit_content" class="btn bg-success btn-sm pull-right hidden" onclick="reply('${item.user.username}')">回复</a>
                         </div>
                         <div class="row container">
                             <p style="padding-left: 100px">${item.forumComment.content}</p>

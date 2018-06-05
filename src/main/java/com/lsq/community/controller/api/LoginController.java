@@ -61,7 +61,9 @@ public class LoginController {
         user.setRegIp(ip);
         user.setRegTime(new Date());
         user.setLastUpdateTime(new Date());
-        user.setStatus(0);
+        user.setStatus(0); //0-正常 1-删除
+        user.setGender(0);
+        user.setHeadImg("img/head_default.jpg");
         //保存到数据库
         userService.addUser(user);
 

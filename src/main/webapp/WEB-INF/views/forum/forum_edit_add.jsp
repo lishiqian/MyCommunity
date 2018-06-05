@@ -44,7 +44,7 @@
                     status: status
                 };
 
-                $.post("/forum/update_forum", prim, function (data) {
+                $.post("/forum/add_forum", prim, function (data) {
                     if(status == 1) {
                         window.location.href = "/forum/forum_list?status=1&lay_msg=publish_success";
                     }else if(status == 2){
