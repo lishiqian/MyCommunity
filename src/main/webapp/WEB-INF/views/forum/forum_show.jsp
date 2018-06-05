@@ -105,59 +105,62 @@
     <div class="row">
         <hr/>
     </div>
-    <div class="row forum_content">
-        <h2>${forum.title}</h2>
-        <p><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${forum.lastUpdateTime}" type="both"/> <span
-                class="pull-right">阅读：${forum.readingNum}</span></p>
-        <hr/>
-        <div style="min-height: 200px;overflow: hidden">
-            ${forum.content}
-        </div>
-    </div>
-
-    <div class="row forum_content" style="margin-bottom: 50px">
-        <div class="row form-group">
-            <textarea rows="4" class="form-control" id="commit_content" onfocus="cc()"></textarea>
-        </div>
-        <div class="row">
-            <a href="javascript:void(0)" class="btn btn-danger pull-right" id="commit_comment">发表评论</a>
-        </div>
-        <div class="row">
+    <div class="row">
+        <div class="row forum_content">
+            <h2>${forum.title}</h2>
+            <p><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${forum.lastUpdateTime}" type="both"/> <span
+                    class="pull-right">阅读：${forum.readingNum}</span></p>
             <hr/>
-            <div class="row container">
-                <c:forEach items="${forumComments}" var="item" varStatus="i">
-                    <div class="row comment_item_show">
-                        <div class="row container" style="padding-left: 50px">
-                            <img src="../../${item.user.headImg}" class="user-head"/>
-                            &nbsp;&nbsp;&nbsp;
-                            <span style="font-size: 20px">${item.user.username}</span>
-                            &nbsp;&nbsp;&nbsp;
-                            <span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${item.forumComment.createDate}"
-                                                  type="both"/></span>
-                            <a href="#commit_content" class="btn bg-success btn-sm pull-right hidden" onclick="reply('${item.user.username}')">回复</a>
+            <div style="min-height: 200px;overflow: hidden">
+                ${forum.content}
+            </div>
+        </div>
+
+        <div class="row forum_content" style="margin-bottom: 50px">
+            <div class="row form-group">
+                <textarea rows="4" class="form-control" id="commit_content" onfocus="cc()"></textarea>
+            </div>
+            <div class="row">
+                <a href="javascript:void(0)" class="btn btn-danger pull-right" id="commit_comment">发表评论</a>
+            </div>
+            <div class="row">
+                <hr/>
+                <div class="row container">
+                    <c:forEach items="${forumComments}" var="item" varStatus="i">
+                        <div class="row comment_item_show">
+                            <div class="row container" style="padding-left: 50px">
+                                <img src="../../${item.user.headImg}" class="user-head"/>
+                                &nbsp;&nbsp;&nbsp;
+                                <span style="font-size: 20px">${item.user.username}</span>
+                                &nbsp;&nbsp;&nbsp;
+                                <span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${item.forumComment.createDate}"
+                                                      type="both"/></span>
+                                <a href="#commit_content" class="btn bg-success btn-sm pull-right hidden" onclick="reply('${item.user.username}')">回复</a>
+                            </div>
+                            <div class="row container">
+                                <p style="padding-left: 100px">${item.forumComment.content}</p>
+                            </div>
+                            <hr/>
                         </div>
-                        <div class="row container">
-                            <p style="padding-left: 100px">${item.forumComment.content}</p>
-                        </div>
-                        <hr/>
-                    </div>
-                </c:forEach>
-                <%--<div class="row" >--%>
-                <%--<div class="row container" style="padding-left: 50px">--%>
-                <%--<img src="../../img/head1.jpeg" class="user-head"/>--%>
-                <%--&nbsp;&nbsp;&nbsp;--%>
-                <%--<span style="font-size: 20px">不好玩</span>--%>
-                <%--&nbsp;&nbsp;&nbsp;--%>
-                <%--<span>2018-05-19 11:48:06</span>--%>
-                <%--</div>--%>
-                <%--<div class="row container">--%>
-                <%--<p style="padding-left: 100px">哈哈哈哈哈哈哈反倒是所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所哈哈哈哈哈哈哈反倒是所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所</p>--%>
-                <%--</div>--%>
-                <%--<hr/>--%>
-                <%--</div>--%>
+                    </c:forEach>
+                    <%--<div class="row" >--%>
+                    <%--<div class="row container" style="padding-left: 50px">--%>
+                    <%--<img src="../../img/head1.jpeg" class="user-head"/>--%>
+                    <%--&nbsp;&nbsp;&nbsp;--%>
+                    <%--<span style="font-size: 20px">不好玩</span>--%>
+                    <%--&nbsp;&nbsp;&nbsp;--%>
+                    <%--<span>2018-05-19 11:48:06</span>--%>
+                    <%--</div>--%>
+                    <%--<div class="row container">--%>
+                    <%--<p style="padding-left: 100px">哈哈哈哈哈哈哈反倒是所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所哈哈哈哈哈哈哈反倒是所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所所</p>--%>
+                    <%--</div>--%>
+                    <%--<hr/>--%>
+                    <%--</div>--%>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
 </body>
 </html>

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.net.URLEncoder;
 import java.util.Date;
 import java.util.List;
 
@@ -82,6 +81,13 @@ public class ForumController {
         }
     }
 
+    /**
+     * 帖子列表展示公用接口
+     * @param status
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/forum_list",produces = "application/json;charset=utf-8")
     public String forumList(@RequestParam(value = "status",defaultValue = "1") Integer status,HttpSession session, Model model){
         //从session中取出登录的用户id
@@ -149,5 +155,41 @@ public class ForumController {
         }
 
         return "redirect:/forum/forum_list?status=3&lay_msg=delete_success";
+    }
+
+    /**
+     * 评论管理帖子列表
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping("forum_comment_manager_list")
+    public String forumCommentManagerList(HttpSession session,Model model){
+        //从session中取出登录的用户id
+        User user = (User) session.getAttribute("login_user");
+        if(user == null){
+            return  "redirect:/main?open_login=ture";
+        }
+        Integer userId = user.getId();
+
+        List<Forum> forums = forumService.selectForumsByUserIdAndStatus(userId,1);
+        model.addAttribute("forums",forums);
+        return "forum/forum_comment_manager_list";
+    }
+
+    @RequestMapping("forum_comment_manager_show")
+    public String forumCommentManagerShow(Integer forumId,Model model){
+        //根据帖子id获取帖子内容
+        Forum forum = forumService.selectForumsById(forumId);
+
+        //获取评论内容
+        List<ForumCommentCustom> forumCommentCustoms = forumCommentService.selectForumCommentsManagerByForunId(forumId);
+
+        //帖子阅读数增加1
+        forumService.addReaderNum(forumId);
+
+        model.addAttribute("forum",forum);
+        model.addAttribute("forumComments",forumCommentCustoms);
+        return "forum/forum_comment_manager";
     }
 }

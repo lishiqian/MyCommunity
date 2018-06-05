@@ -68,4 +68,38 @@ public class ForumCommentServiceImpl implements ForumCommentService {
 
         return forumCommentCustoms;
     }
+
+    @Override
+    public List<ForumCommentCustom> selectForumCommentsManagerByForunId(Integer forumId) {
+        ForumCommentExample forumCommentExample = new ForumCommentExample();
+        ForumCommentExample.Criteria criteria = forumCommentExample.createCriteria();
+        criteria.andForumIdEqualTo(forumId);
+        //查询状态为1 未删除
+        criteria.andStatusBetween(1,2);
+        List<ForumComment> forumComments = forumCommentMapper.selectByExample(forumCommentExample);
+
+        //封住评论与用户信息
+        List<ForumCommentCustom> forumCommentCustoms = new ArrayList<ForumCommentCustom>(forumComments.size());
+        for (int i = 0; i < forumComments.size(); i++) {
+            ForumCommentCustom forumCommentCustom = new ForumCommentCustom();
+            forumCommentCustom.setForumComment(forumComments.get(i));
+            forumCommentCustom.setUser(userMapper.selectByPrimaryKey(forumComments.get(i).getCreateUserId()));
+
+            forumCommentCustoms.add(forumCommentCustom);
+        }
+
+        logger.info("读取用户评论信息完成----------");
+
+
+        return forumCommentCustoms;
+    }
+
+    @Override
+    public void updateForumCommentStatus(Integer commentId, Integer status) {
+        ForumComment forumComment = new ForumComment();
+        forumComment.setId(commentId);
+        forumComment.setStatus(status);
+
+        forumCommentMapper.updateByPrimaryKeySelective(forumComment);
+    }
 }

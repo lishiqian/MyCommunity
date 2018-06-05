@@ -77,7 +77,7 @@
                 <li><a href="/forum/forum_list?status=1">我的文章</a></li>
                 <li><a href="/forum/forum_list?status=2">我的草稿</a></li>
                 <li><a href="/forum/forum_list?status=3">回收站</a></li>
-                <li><a href="#">评论管理</a></li>
+                <li><a href="/forum/forum_comment_manager_list">评论管理</a></li>
             </ul>
         </div>
         <div class="col-md-9" style="min-height: 500px">

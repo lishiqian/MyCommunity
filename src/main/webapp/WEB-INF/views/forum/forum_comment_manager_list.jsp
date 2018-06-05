@@ -22,8 +22,8 @@
             background: #ffffff;
             padding: 80px;
         }
-    </style>
 
+    </style>
     <script type="text/javascript">
         var deleteForun = function(forumId,userId){
             //信息框-例2
@@ -59,14 +59,14 @@
         <div class="col-md-3">
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="/user/show_user">我的信息</a></li>
-                <li class="active"><a href="/forum/forum_list?status=1">我的文章</a></li>
+                <li><a href="/forum/forum_list?status=1">我的文章</a></li>
                 <li><a href="/forum/forum_list?status=2">我的草稿</a></li>
                 <li><a href="/forum/forum_list?status=3">回收站</a></li>
-                <li><a href="/forum/forum_comment_manager_list">评论管理</a></li>
+                <li class="active"><a href="/forum/forum_comment_manager_list">评论管理</a></li>
             </ul>
         </div>
         <div class="col-md-9" style="min-height: 500px">
-            <h4>文章管理</h4>
+            <h4>评论管理</h4>
             <hr/>
             <div class="container-fluid">
                 <c:forEach items="${forums}" var="item" varStatus="i">
@@ -77,8 +77,7 @@
                             &nbsp;&nbsp; 阅读：${item.readingNum} 评论：${item.comments}
                             <span class="pull-right">
                                 <small>
-                                    <a target="_blank" href="/forum/show_forum?forumId=${item.id}">查看</a>|
-                                    <a href="javascript:void(0)" onclick="deleteForun(${item.id},${item.userId})">删除</a>
+                                    <a target="_blank" href="/forum/forum_comment_manager_show?forumId=${item.id}">管理评论</a>
                                 </small>
                             </span>
                         </p>

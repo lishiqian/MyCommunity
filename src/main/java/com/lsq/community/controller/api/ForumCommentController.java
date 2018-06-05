@@ -43,4 +43,18 @@ public class ForumCommentController {
         return ErrorCode.ok().toString();
     }
 
+
+    @RequestMapping(value = "/forum_comment_manager",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String forumCommentManager(Integer commentId,Integer status, HttpSession session){
+        //如果用户未登录或者用户登录id和创建登录id不同
+        User user = (User) session.getAttribute("login_user");
+        if(user == null){
+            return ErrorCode.bulid(201,"用户未登录",null).toString();
+        }
+
+        forumCommentService.updateForumCommentStatus(commentId,status);
+        return ErrorCode.ok(status).toString();
+    }
+
 }
