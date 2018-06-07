@@ -32,14 +32,12 @@ $(function () {
        layer.msg(layMsgMapper[getParam("lay_msg")]);
    }
    if(getParam("open_login")){
-       $("#login").click(function () {
-           layer.open({
-               title:'用户登录',
-               type: 2,
-               area: ['360px', '330px'],
-               skin: 'layui-layer-rim', //加上边框
-               content: ['/show_login', 'no']
-           });
+       layer.open({
+           title:'用户登录',
+           type: 2,
+           area: ['360px', '330px'],
+           skin: 'layui-layer-rim', //加上边框
+           content: ['/show_login', 'no']
        });
    }
 });

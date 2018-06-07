@@ -40,6 +40,9 @@ public class UserController {
     @RequestMapping("/show_user")
     public String showUser(HttpSession session, Model model){
         User loginUser = (User) session.getAttribute("login_user");
+        if(loginUser == null){
+            return "redirect:/main?open_login=ture";
+        }
         model.addAttribute("userGender",CommonUtil.getUserGenderString(loginUser.getGender()));
         return "user/user_show";
     }
