@@ -89,7 +89,7 @@
         </div>
         <div class="col-md-3" style="min-height: 500px">
             <div class="row">
-                <img src="../img/广告.png"  class="img-responsive center-block">
+                <img src="../img/advtise1.png" class="img-responsive center-block">
             </div>
             <div class="row container">
                 <p><a href="#">程序员不要去这样的公司</a></p>
@@ -104,19 +104,14 @@
                 <p><a href="#">一步一步理解 python web 框架</a></p>
             </div>
             <div class="row">
-                <img src="../img/广告.png"  class="img-responsive center-block">
+                <img src="../img/advtise2.jpg" class="img-responsive center-block">
             </div>
             <div class="row container">
-                <p><a href="#">程序员不要去这样的公司</a></p>
-                <p><a href="#">你的知识死角不能否定你的技术能力</a></p>
-                <p><a href="#">【原创】分布式之redis复习精讲</a></p>
-                <p><a href="#">Docker 镜像之进阶篇</a></p>
-                <p><a href="#">vue2.0 axios封装、vuex介绍</a></p>
-                <p><a href="#">学ASP.NET入门编程，合适么?</a></p>
-                <p><a href="#">《HelloGitHub》第 26 期</a></p>
-                <p><a href="#">上周热点回顾（5.21-5.27）</a></p>
-                <p><a href="#">对Javascript 类、原型链、继承的理解</a></p>
-                <p><a href="#">一步一步理解 python web 框架</a></p>
+                <p><a href="#">Python中文件的读取和写入</a></p>
+                <p><a href="#">BP神经网络：误差反向传播公式的简单推导</a></p>
+                <p><a href="#">C++实现顺序结构线性表的基本操作</a></p>
+                <p><a href="#">python中列表（list）的基本操作</a></p>
+                <p><a href="#">python中数组（numpy.array）的基本操作</a></p>
             </div>
         </div>
     </div>
