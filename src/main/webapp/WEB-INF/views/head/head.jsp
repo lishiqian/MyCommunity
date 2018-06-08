@@ -39,7 +39,7 @@
             </div>
             <div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/main">博客</a></li>
+                    <li><a href="/main">博客</a></li>
                     <li><a href="#">学院</a></li>
                     <li><a href="#">论坛</a></li>
                     <li><a href="#">发现</a></li>

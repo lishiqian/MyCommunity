@@ -15,19 +15,6 @@
             border-radius: 50%;
         }
     </style>
-    <script type="text/javascript">
-        $(function () {
-            $("#login").click(function () {
-                layer.open({
-                    title:'用户登录',
-                    type: 2,
-                    area: ['360px', '300px'],
-                    skin: 'layui-layer-rim', //加上边框
-                    content: ['/show_login', 'no']
-                });
-            });
-        });
-    </script>
 </head>
 <body>
     <!--导航栏-->
@@ -38,7 +25,7 @@
             </div>
             <div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/main">博客</a></li>
+                    <li><a href="/main">博客</a></li>
                     <li><a href="#">学院</a></li>
                     <li><a href="#">论坛</a></li>
                     <li><a href="#">发现</a></li>
