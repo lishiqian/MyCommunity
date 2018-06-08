@@ -114,15 +114,22 @@ public class ForumController {
      * @return
      */
     @RequestMapping(value = "/show_forum",produces = "application/json;charset=utf-8")
-    public String showForum(int forumId,Model model){
+    public String showForum(int forumId,Model model,HttpSession session){
         //根据帖子id获取帖子内容
         Forum forum = forumService.selectForumsById(forumId);
 
         //获取评论内容
         List<ForumCommentCustom> forumCommentCustoms = forumCommentService.selectForumCommentsByForunId(forumId);
 
-        //帖子阅读数增加1
-        forumService.addReaderNum(forumId);
+        User user = (User) session.getAttribute("login_user");
+        if(user == null){
+            //帖子阅读数增加1
+            forumService.addReaderNum(forumId);
+        }else{
+            Integer userId = user.getId();
+            forumService.addReaderNum(forumId,userId);
+        }
+
 
         model.addAttribute("forum",forum);
         model.addAttribute("forumComments",forumCommentCustoms);

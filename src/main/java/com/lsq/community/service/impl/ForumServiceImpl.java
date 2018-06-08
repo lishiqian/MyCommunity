@@ -2,9 +2,11 @@ package com.lsq.community.service.impl;
 
 import com.lsq.community.custom.ForumUserCustom;
 import com.lsq.community.mapper.ForumMapper;
+import com.lsq.community.mapper.ForumVisitorLogsMapper;
 import com.lsq.community.mapper.UserMapper;
 import com.lsq.community.po.Forum;
 import com.lsq.community.po.ForumExample;
+import com.lsq.community.po.ForumVisitorLogs;
 import com.lsq.community.service.ForumService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -25,6 +27,9 @@ public class ForumServiceImpl implements ForumService{
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private ForumVisitorLogsMapper forumVisitorLogsMapper;
 
     @Override
     public void addForum(Forum forum) {
@@ -95,7 +100,15 @@ public class ForumServiceImpl implements ForumService{
 
     @Override
     public void addReaderNum(Integer forumId, Integer userId) {
+        //添加用户浏览记录
+        ForumVisitorLogs forumVisitorLogs = new ForumVisitorLogs();
+        forumVisitorLogs.setForumId(forumId);
+        forumVisitorLogs.setUserId(userId);
+        forumVisitorLogs.setCreateTime(new Date());
+
         addReaderNum(forumId);
+
+        forumVisitorLogsMapper.insertSelective(forumVisitorLogs);
     }
 
     @Override
