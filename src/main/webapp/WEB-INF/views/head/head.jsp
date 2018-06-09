@@ -10,6 +10,7 @@
         $(function () {
             $("#login").click(function () {
                 layer.open({
+                    offset: '150px',
                     title:'用户登录',
                     type: 2,
                     area: ['360px', '330px'],
@@ -20,6 +21,7 @@
 
             $("#register").click(function () {
                 layer.open({
+                    offset: '150px',
                     title:'用户注册',
                     type: 2,
                     area: ['360px', '430px'],
@@ -48,8 +50,8 @@
             </div>
             <div>
                 <ul class="nav navbar-nav pull-right">
-                    <li><a href="#" id="login">登录</a></li>
-                    <li><a href="#" id="register">注册</a></li>
+                    <li><a href="javascript:void(0)" id="login">登录</a></li>
+                    <li><a href="javascript:void(0)" id="register">注册</a></li>
                 </ul>
             </div>
         </div>

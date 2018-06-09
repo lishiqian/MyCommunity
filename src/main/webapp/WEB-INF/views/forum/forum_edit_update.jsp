@@ -92,7 +92,7 @@
         <div class="col-md-3">
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="/user/show_user">我的信息</a></li>
-                <li class="active"><a href="/forum/forum_list?status=1">我的文章</a></li>
+                <li class="active"><a href="/forum/forum_list?status=1">我的帖子</a></li>
                 <li><a href="/forum/forum_list?status=2">我的草稿</a></li>
                 <li><a href="/forum/forum_list?status=3">回收站</a></li>
                 <li><a href="/forum/forum_comment_manager_list">评论管理</a></li>

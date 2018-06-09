@@ -59,7 +59,7 @@
         <div class="col-md-3">
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="/user/show_user">我的信息</a></li>
-                <li><a href="/forum/forum_list?status=1">我的文章</a></li>
+                <li><a href="/forum/forum_list?status=1">我的帖子</a></li>
                 <li class="active"><a href="/forum/forum_list?status=2">我的草稿</a></li>
                 <li><a href="/forum/forum_list?status=3">回收站</a></li>
                 <li><a href="/forum/forum_comment_manager_list">评论管理</a></li>
@@ -69,6 +69,13 @@
             <h4>草稿</h4>
             <hr/>
             <div class="container-fluid">
+                <c:if test="${empty forums}">
+                    <div class="jumbotron">
+                        <div class="container">
+                            <h3>草稿箱空空如也！！！</h3>
+                        </div>
+                    </div>
+                </c:if>
                 <c:forEach items="${forums}" var="item" varStatus="i">
                     <div class="row" style="border-bottom: 1px solid #218838">
                         <p>&nbsp;</p>

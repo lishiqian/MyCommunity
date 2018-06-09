@@ -33,6 +33,7 @@ $(function () {
    }
    if(getParam("open_login")){
        layer.open({
+           offset:'150px',
            title:'用户登录',
            type: 2,
            area: ['360px', '330px'],
