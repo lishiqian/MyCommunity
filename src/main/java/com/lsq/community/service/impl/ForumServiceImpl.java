@@ -65,6 +65,8 @@ public class ForumServiceImpl implements ForumService{
     public List<ForumUserCustom> selectForumsOrderByReadingNum() {
         ForumExample forumExample = new ForumExample();
         forumExample.setOrderByClause("reading_num DESC");
+        ForumExample.Criteria criteria = forumExample.createCriteria();
+        criteria.andStatusEqualTo(1);
         List<Forum> forums = forumMapper.selectByExample(forumExample);
 
         List<ForumUserCustom> forumUserCustoms = new ArrayList<ForumUserCustom>(forums.size());

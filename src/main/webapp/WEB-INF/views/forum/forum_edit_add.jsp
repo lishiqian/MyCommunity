@@ -74,7 +74,7 @@
     <div class="row">
         <h2><span class="text-danger">&nbsp;&nbsp;创作中心</span>
             <div class="button btn-info btn-lg pull-right">
-                <span class="glyphicon glyphicon-plus">写博客</span>
+                <span class="glyphicon glyphicon-plus"> 写博客</span>
             </div>
         </h2>
     </div>
