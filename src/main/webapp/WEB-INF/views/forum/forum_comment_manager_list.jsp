@@ -69,6 +69,13 @@
             <h4>评论管理</h4>
             <hr/>
             <div class="container-fluid">
+                <c:if test="${empty forums}">
+                    <div class="jumbotron">
+                        <div class="container">
+                            <h3>帖子空空如也！！！</h3>
+                        </div>
+                    </div>
+                </c:if>
                 <c:forEach items="${forums}" var="item" varStatus="i">
                     <div class="row" style="border-bottom: 1px solid #218838">
                         <p>&nbsp;</p>
