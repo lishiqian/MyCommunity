@@ -63,7 +63,7 @@
                     content: comment_content,
                     forumId:${forum.id},
                 }, function (data) {
-                    alert(data.code);
+                    //alert(data.code);
                     if(data.code == 201){
                         layer.msg("用户未登录");
                     }

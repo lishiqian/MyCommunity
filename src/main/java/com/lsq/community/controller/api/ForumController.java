@@ -193,16 +193,25 @@ public class ForumController {
      * @return
      */
     @RequestMapping("forum_comment_manager_list")
-    public String forumCommentManagerList(HttpSession session,Model model){
+    public String forumCommentManagerList(
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            HttpSession session,Model model){
+
         //从session中取出登录的用户id
         User user = (User) session.getAttribute("login_user");
         if(user == null){
             return  "redirect:/main?open_login=ture";
         }
         Integer userId = user.getId();
-
+        PageHelper.startPage(pageNum,pageSize);
         List<Forum> forums = forumService.selectForumsByUserIdAndStatus(userId,1);
+        PageInfo pageInfo = new PageInfo(forums);
+
         model.addAttribute("forums",forums);
+        model.addAttribute("pageNum",pageInfo.getPageNum());
+        model.addAttribute("pages",pageInfo.getPages());
+
         return "forum/forum_comment_manager_list";
     }
 
