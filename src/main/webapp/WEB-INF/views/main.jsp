@@ -53,11 +53,25 @@
                             return page;
                     }
                 }, onPageClicked: function (event, originalEvent, type, page) { //异步换页
-                    window.location.href = "/main?pageNum=" + page;
+                    window.location.href = "/main?pageNum=" + page
+                    <c:if test="${keyword != null}">
+                        + "&keyword=" + ${keyword}
+                    </c:if>
+                    ;
                 },
 
             };
             $("#page").bootstrapPaginator(options);
+
+            //
+            $("#search").click(function () {
+                var keyword = $("#keyword").val();
+                if(keyword){
+                    window.location.href = "/main?keyword=" + keyword;
+                }else{
+                    window.location.href = "/main";
+                }
+            })
         });
     </script>
 </head>
@@ -77,8 +91,8 @@
     <div class="row">&nbsp;</div>
     <div class="row">
         <form class="form-group form-inline pull-right">
-            <input type="text" placeholder="请输入关键字" class="form-control"/>
-            <input type="button" value="搜索"  class="btn btn-danger" />
+            <input type="text" value="${keyword}" placeholder="请输入关键字" class="form-control" id="keyword"/>
+            <input type="button" value="搜索"  class="btn btn-danger" id="search"/>
         </form>
     </div>
     <div class="row" id="content">

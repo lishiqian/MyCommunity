@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lsq.community.common.PageData;
 import com.lsq.community.custom.ForumUserCustom;
+import com.lsq.community.customMapper.SearchMapper;
 import com.lsq.community.mapper.ForumMapper;
 import com.lsq.community.mapper.ForumVisitorLogsMapper;
 import com.lsq.community.mapper.UserMapper;
@@ -34,6 +35,9 @@ public class ForumServiceImpl implements ForumService{
 
     @Autowired
     private ForumVisitorLogsMapper forumVisitorLogsMapper;
+
+    @Autowired
+    private SearchMapper searchMapper;
 
     @Override
     public void addForum(Forum forum) {
@@ -127,13 +131,8 @@ public class ForumServiceImpl implements ForumService{
     @Override
     public PageData search(Integer pageNum, Integer pageSize, String keyword) {
         PageHelper.startPage(pageNum,pageSize);
-        ForumExample forumExample = new ForumExample();
-        forumExample.setOrderByClause("reading_num DESC");
-        ForumExample.Criteria criteria = forumExample.createCriteria();
-        criteria.andStatusEqualTo(1);
-        List<Forum> forums = forumMapper.selectByExample(forumExample);
+        List<Forum> forums = searchMapper.selectForumByKeyword(keyword);
         PageInfo pageInfo = new PageInfo(forums);
-
 
         List<ForumUserCustom> forumUserCustoms = new ArrayList<ForumUserCustom>(forums.size());
         for (Forum forum : forums) {
@@ -145,7 +144,6 @@ public class ForumServiceImpl implements ForumService{
             forumUserCustoms.add(forumUserCustom);
         }
         PageData pageData = new PageData(pageInfo,forumUserCustoms);
-
         return pageData;
     }
 

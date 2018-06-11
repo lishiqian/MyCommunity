@@ -162,6 +162,10 @@ public class ForumController {
             String keyword,
             Model model){
 
+        if(keyword != null && !"".equals(keyword.trim())){
+            keyword = keyword.trim();
+            model.addAttribute("keyword",keyword);
+        }
         PageData pageData = forumService.search(pageNum,pageSize,keyword);
         List<ForumUserCustom> forumUserCustoms = (List<ForumUserCustom>) pageData.getData();
         model.addAttribute("forumUserCustoms",forumUserCustoms);
