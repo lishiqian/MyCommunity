@@ -9,9 +9,9 @@
     <script type="text/javascript" src="../util/jquery/jquery-3.3.1.min.js"></script>
     <!-- 引入bootstrap的js文件 -->
     <script type="text/javascript" src="../util/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../util/bootstrap/js/bootstrap-paginator.min.js"></script>
     <!-- 引入bootstrap的css文件 -->
     <link rel="stylesheet" type="text/css" href="../util/bootstrap/css/bootstrap.css">
-
     <style type="text/css">
         body {
             background: #f2f2f2;
@@ -31,8 +31,35 @@
             border: solid 2px #2dffc2;
             border-radius: 50%;
         }
-
     </style>
+    <script type="text/javascript">
+        $(function () {
+            var options = {
+                currentPage: ${pageNum},//当前页
+                totalPages: ${pages},//总页数
+                numberofPages: 5,//显示的页数
+
+                itemTexts: function(type, page, current) { //修改显示文字
+                    switch (type) {
+                        case "first":
+                            return "第一页";
+                        case "prev":
+                            return "上一页";
+                        case "next":
+                            return "下一页";
+                        case "last":
+                            return "最后一页";
+                        case "page":
+                            return page;
+                    }
+                }, onPageClicked: function (event, originalEvent, type, page) { //异步换页
+                    window.location.href = "/main?pageNum=" + page;
+                },
+
+            };
+            $("#page").bootstrapPaginator(options);
+        });
+    </script>
 </head>
 <body>
 <jsp:include page="/head" flush="true"></jsp:include>
@@ -49,7 +76,10 @@
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
-        <hr/>
+        <form class="form-group form-inline pull-right">
+            <input type="text" placeholder="请输入关键字" class="form-control"/>
+            <input type="button" value="搜索"  class="btn btn-danger" />
+        </form>
     </div>
     <div class="row" id="content">
         <div class="col-md-9" style="min-height: 500px">
@@ -72,20 +102,9 @@
                     </p>
                 </div>
             </c:forEach>
-            <%--<div class="row container-fluid forum_item">--%>
-                <%--<p>&nbsp;</p>--%>
-                <%--<p><h4>leetcode 125. Valid Palindrome解析</h4></p>--%>
-                <%--<p>--%>
-                    <%--<span>--%>
-                        <%--<img src="../img/head2.jpg" class="user-head"/>--%>
-                        <%--&nbsp;--%>
-                        <%--<a style="font-size: 15px">不好玩</a>--%>
-                        <%--&nbsp;&nbsp;&nbsp;--%>
-                    <%--</span>--%>
-                    <%--<span>03-26 &nbsp;&nbsp; 阅读：25 &nbsp;&nbsp; 评论：14</span>--%>
-                    <%--<span class="pull-right"><small><a href="#">查看</a>|<a href="#">删除</a></small></span>--%>
-                <%--</p>--%>
-            <%--</div>--%>
+            <div class="row" style="text-align: center">
+                <ul id="page"></ul>
+            </div>
         </div>
         <div class="col-md-3" style="min-height: 500px">
             <div class="row">

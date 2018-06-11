@@ -1,5 +1,8 @@
 package com.lsq.community.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.lsq.community.common.PageData;
 import com.lsq.community.custom.ForumUserCustom;
 import com.lsq.community.mapper.ForumMapper;
 import com.lsq.community.mapper.ForumVisitorLogsMapper;
@@ -8,6 +11,7 @@ import com.lsq.community.po.Forum;
 import com.lsq.community.po.ForumExample;
 import com.lsq.community.po.ForumVisitorLogs;
 import com.lsq.community.service.ForumService;
+import com.lsq.community.util.JsonUtil;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,26 +64,8 @@ public class ForumServiceImpl implements ForumService{
         return forumMapper.selectByExample(forumExample);
     }
 
-    //主页论坛帖子列表查询
-    @Override
-    public List<ForumUserCustom> selectForumsOrderByReadingNum() {
-        ForumExample forumExample = new ForumExample();
-        forumExample.setOrderByClause("reading_num DESC");
-        ForumExample.Criteria criteria = forumExample.createCriteria();
-        criteria.andStatusEqualTo(1);
-        List<Forum> forums = forumMapper.selectByExample(forumExample);
 
-        List<ForumUserCustom> forumUserCustoms = new ArrayList<ForumUserCustom>(forums.size());
-        for (Forum forum : forums) {
-            ForumUserCustom forumUserCustom = new ForumUserCustom();
-            forumUserCustom.setForum(forum);
-            //根据用户帖子创建id查询用户信息
-            forumUserCustom.setUser(userMapper.selectByPrimaryKey(forum.getUserId()));
 
-            forumUserCustoms.add(forumUserCustom);
-        }
-        return forumUserCustoms;
-    }
 
     /**
      * 根据id获取标签内容
@@ -130,6 +116,39 @@ public class ForumServiceImpl implements ForumService{
     public void updateForum(Forum forum) {
         forumMapper.updateByPrimaryKeySelective(forum);
     }
+
+    /**
+     * //主页论坛帖子列表查询
+     * @param pageNum
+     * @param pageSize
+     * @param keyword
+     * @return
+     */
+    @Override
+    public PageData search(Integer pageNum, Integer pageSize, String keyword) {
+        PageHelper.startPage(pageNum,pageSize);
+        ForumExample forumExample = new ForumExample();
+        forumExample.setOrderByClause("reading_num DESC");
+        ForumExample.Criteria criteria = forumExample.createCriteria();
+        criteria.andStatusEqualTo(1);
+        List<Forum> forums = forumMapper.selectByExample(forumExample);
+        PageInfo pageInfo = new PageInfo(forums);
+
+
+        List<ForumUserCustom> forumUserCustoms = new ArrayList<ForumUserCustom>(forums.size());
+        for (Forum forum : forums) {
+            ForumUserCustom forumUserCustom = new ForumUserCustom();
+            forumUserCustom.setForum(forum);
+            //根据用户帖子创建id查询用户信息
+            forumUserCustom.setUser(userMapper.selectByPrimaryKey(forum.getUserId()));
+
+            forumUserCustoms.add(forumUserCustom);
+        }
+        PageData pageData = new PageData(pageInfo,forumUserCustoms);
+
+        return pageData;
+    }
+
 
     private void updateStatus(Integer forumId,Integer status){
         Forum forum = new Forum();

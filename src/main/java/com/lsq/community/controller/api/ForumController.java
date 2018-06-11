@@ -1,12 +1,16 @@
 package com.lsq.community.controller.api;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.lsq.community.common.ErrorCode;
+import com.lsq.community.common.PageData;
 import com.lsq.community.custom.ForumCommentCustom;
 import com.lsq.community.custom.ForumUserCustom;
 import com.lsq.community.po.Forum;
 import com.lsq.community.po.User;
 import com.lsq.community.service.ForumCommentService;
 import com.lsq.community.service.ForumService;
+import com.lsq.community.util.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -89,16 +93,26 @@ public class ForumController {
      * @return
      */
     @RequestMapping(value = "/forum_list",produces = "application/json;charset=utf-8")
-    public String forumList(@RequestParam(value = "status",defaultValue = "1") Integer status,HttpSession session, Model model){
+    public String forumList(
+            @RequestParam(value = "status",defaultValue = "1") Integer status,
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            HttpSession session, Model model){
         //从session中取出登录的用户id
         User user = (User) session.getAttribute("login_user");
         if(user == null){
             return  "redirect:/main?open_login=ture";
         }
         Integer userId = user.getId();
-
+        PageHelper.startPage(pageNum,pageSize);
         List<Forum> forums = forumService.selectForumsByUserIdAndStatus(userId,status);
+        PageInfo pageInfo = new PageInfo(forums);
+
+        System.out.println(JsonUtil.toJson(pageInfo));
+
         model.addAttribute("forums",forums);
+        model.addAttribute("pageNum",pageInfo.getPageNum());
+        model.addAttribute("pages",pageInfo.getPages());
         if(status == 1)
             return "forum/forum_list";
         else if(status == 2)
@@ -142,9 +156,17 @@ public class ForumController {
      * @return
      */
     @RequestMapping("/forum_main")
-    public String forumMain(Model model){
-        List<ForumUserCustom> forumUserCustoms = forumService.selectForumsOrderByReadingNum();
+    public String forumMain(
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            String keyword,
+            Model model){
+
+        PageData pageData = forumService.search(pageNum,pageSize,keyword);
+        List<ForumUserCustom> forumUserCustoms = (List<ForumUserCustom>) pageData.getData();
         model.addAttribute("forumUserCustoms",forumUserCustoms);
+        model.addAttribute("pages",pageData.getPageTotalNum());
+        model.addAttribute("pageNum",pageData.getPageCurrentNum());
         return "main";
     }
 
@@ -199,4 +221,5 @@ public class ForumController {
         model.addAttribute("forumComments",forumCommentCustoms);
         return "forum/forum_comment_manager";
     }
+
 }

@@ -24,6 +24,34 @@
         }
 
     </style>
+    <script type="text/javascript">
+        $(function () {
+            var options = {
+                currentPage: ${pageNum},//当前页
+                totalPages: ${pages},//总页数
+                numberofPages: 5,//显示的页数
+
+                itemTexts: function(type, page, current) { //修改显示文字
+                    switch (type) {
+                        case "first":
+                            return "第一页";
+                        case "prev":
+                            return "上一页";
+                        case "next":
+                            return "下一页";
+                        case "last":
+                            return "最后一页";
+                        case "page":
+                            return page;
+                    }
+                }, onPageClicked: function (event, originalEvent, type, page) { //异步换页
+                    window.location.href = "/forum/forum_list?status=3&pageNum=" + page;
+                },
+
+            };
+            $("#page").bootstrapPaginator(options);
+        });
+    </script>
 </head>
 <body>
 <jsp:include page="/head" flush="true"></jsp:include>
@@ -84,7 +112,9 @@
                         <span class="pull-right"><small><a href="#">查看</a>|<a href="#">删除</a></small></span>
                     </p>
                 </div>-->
-
+                <div class="row" style="text-align: center">
+                    <ul id="page"></ul>
+                </div>
             </div>
 
         </div>

@@ -1,6 +1,7 @@
 package com.lsq.community.service;
 
 
+import com.lsq.community.common.PageData;
 import com.lsq.community.custom.ForumUserCustom;
 import com.lsq.community.po.Forum;
 
@@ -13,8 +14,6 @@ public interface ForumService {
 
     List<Forum> selectForumsByUserIdAndStatus(Integer id,Integer status);
 
-    List<ForumUserCustom> selectForumsOrderByReadingNum();
-
     Forum selectForumsById(Integer id);
 
     void addReaderNum(Integer forumId);
@@ -26,4 +25,6 @@ public interface ForumService {
     void deleteForum(Integer forumId);
 
     void updateForum(Forum forum);
+
+    PageData search(Integer pageNum, Integer pageSize, String keyword);
 }

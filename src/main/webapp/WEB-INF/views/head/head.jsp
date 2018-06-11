@@ -4,6 +4,7 @@
 <head>
     <title>Title</title>
     <script type="text/javascript" src="../../util/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../util/bootstrap/js/bootstrap-paginator.min.js"></script>
     <script type="text/javascript" src="../../util/layer/layer.js"></script>
     <script type="text/javascript" src="../../js/common.js"></script>
     <script type="text/javascript">

@@ -32,6 +32,18 @@
         <property name="typeAliasesPackage" value="com.lsq.community.mapper"/>
         <!-- 扫描sql配置文件:mapper需要的xml文件 -->
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageHelper">
+                    <property name="properties">
+                        <value>
+                            dialect=mysql
+                            reasonable=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
 
     <!-- 配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
@@ -41,5 +53,6 @@
         <!-- 给出需要扫描Dao接口包 -->
         <property name="basePackage" value="com.lsq.community.mapper"/>
     </bean>
+
 
 </beans>
