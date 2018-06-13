@@ -16,6 +16,10 @@
                 var email = $("#email").val();
                 var passwd = $("#passwd").val();
                 if(email && passwd){
+                    if(!email.match("^[a-z0-9]+([._\\\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$")){
+                        $("#remind").text("邮箱格式不正确");
+                        return;
+                    }
                     $.post("/login",{email:email,passwd:passwd},function (data) {
                         if(data.code == 200){
                             $("#remind").text("登录成功");

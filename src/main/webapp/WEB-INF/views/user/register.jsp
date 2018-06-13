@@ -28,12 +28,21 @@
                     $("#remind").text("请输入邮箱");
                     return;
                 }
+                if(!email.match("^[a-z0-9]+([._\\\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$")){
+                    $("#remind").text("邮箱格式不正确");
+                    return;
+                }
                 if(!username){
                     $("#remind").text("请输入用户名");
                     return;
                 }
                 if(!passwd){
                     $("#remind").text("请输入密码");
+                    return;
+                }
+
+                if(passwd.length < 6){
+                    $("#remind").text("密码长度不能小于6位");
                     return;
                 }
                 

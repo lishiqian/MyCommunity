@@ -35,7 +35,7 @@ public class RootController {
      */
     @RequestMapping("/ueditor_controller")
     public String ueditor(){
-        System.out.println("------------------------------");
+        System.out.println("图片上传------------------------------");
         return "forward:WEB-INF/util/ueditor/jsp/controller.jsp";
     }
 
