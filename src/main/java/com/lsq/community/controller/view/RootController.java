@@ -1,9 +1,13 @@
 package com.lsq.community.controller.view;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -17,6 +21,8 @@ public class RootController {
     public String root(){
         return "forward:/main";
     }
+
+    private Logger logger = Logger.getLogger(RootController.class);
 
     @RequestMapping("/hello")
     @ResponseBody
@@ -33,9 +39,9 @@ public class RootController {
      * ueditor控制器跳转
      * @return
      */
-    @RequestMapping("/ueditor_controller")
+    @RequestMapping(value = "/ueditor_controller")
     public String ueditor(){
-        System.out.println("图片上传------------------------------");
+        logger.info("图片上传------------------------------");
         return "forward:WEB-INF/util/ueditor/jsp/controller.jsp";
     }
 
