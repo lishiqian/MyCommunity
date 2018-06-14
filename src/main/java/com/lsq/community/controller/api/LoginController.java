@@ -7,6 +7,7 @@ import com.lsq.community.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,6 +29,8 @@ public class LoginController {
     @RequestMapping(value = "/login",produces = "application/json;charset=utf-8")
     @ResponseBody
     public String login(String email, String passwd, HttpSession session){
+        //md5加密
+        passwd = DigestUtils.md5DigestAsHex(passwd.getBytes());
         User user = userService.selectUsername(email);
         if(user == null){
             return ErrorCode.bulid(201,"该邮箱未注册",null).toString();
@@ -52,6 +55,7 @@ public class LoginController {
         if(exsit)
             return ErrorCode.bulid(201,"Email已经存在",null).toString();
 
+        passwd = DigestUtils.md5DigestAsHex(passwd.getBytes());
         //保存用户信息
         String ip = CommonUtil.getClientIp(request); //获取注册ip
         User user = new User();
