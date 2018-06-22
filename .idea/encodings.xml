@@ -18,6 +18,7 @@
     <file url="file://$PROJECT_DIR$/src/main/resources/mapper/ForumMapper.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mapper/ForumVisitorLogsMapper.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/sql/community.sql" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/sql/person.sql" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/img/advtise1.png" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/img/advtise2.jpg" charset="GBK" />
@@ -28,7 +29,6 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/util/bootstrap/css" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/util/bootstrap/fonts" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/util/bootstrap/js" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/util/jquery/jquery-1.9.1.min.js" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/util/jquery/jquery-3.3.1.min.js" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/util/layer" charset="GBK" />
   </component>
