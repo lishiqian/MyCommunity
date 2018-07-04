@@ -40,6 +40,8 @@ public class ForumCommentController {
         //用户评论数加1
         forumService.addCommentNum(forumComment.getForumId());
 
+        session.setAttribute("lay_msg","评论成功");
+
         return ErrorCode.ok().toString();
     }
 

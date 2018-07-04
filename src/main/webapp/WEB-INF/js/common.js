@@ -17,29 +17,34 @@ var getParam = function(key) {
 }
 
 
-//消息提示映射
-var layMsgMapper = {
-    "publish_success":"帖子发布成功",
-    "save_success":"帖子保存到草稿",
-    "delete_success":"删除成功",
-    "comment_success":"评论成功"
-};
+// //消息提示映射
+// var layMsgMapper = {
+//     "publish_success":"帖子发布成功",
+//     "save_success":"帖子保存到草稿",
+//     "delete_success":"删除成功",
+//     "comment_success":"评论成功"
+// };
 
 
 
 $(function () {
-   if(getParam("lay_msg")){
-       layer.msg(layMsgMapper[getParam("lay_msg")]);
-   }
-   if(getParam("open_login")){
-       layer.open({
-           offset:'150px',
-           title:'用户登录',
-           type: 2,
-           area: ['360px', '330px'],
-           skin: 'layui-layer-rim', //加上边框
-           content: ['/show_login', 'no']
-       });
-   }
+   // if(getParam("lay_msg")){
+   //     layer.msg(layMsgMapper[getParam("lay_msg")]);
+   // }
+   // if(getParam("open_login")){
+   //     layer.open({
+   //         offset:'150px',
+   //         title:'用户登录',
+   //         type: 2,
+   //         area: ['360px', '330px'],
+   //         skin: 'layui-layer-rim', //加上边框
+   //         content: ['/show_login', 'no']
+   //     });
+   // }
+    $.get("/show_toast",null,function (data) {
+        if(data.code == 200){
+            layer.msg(data.data);
+        }
+    });
 });
 

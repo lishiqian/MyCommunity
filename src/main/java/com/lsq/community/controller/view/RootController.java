@@ -1,5 +1,6 @@
 package com.lsq.community.controller.view;
 
+import com.lsq.community.common.ErrorCode;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,5 +53,18 @@ public class RootController {
             return "head/head";
         }
         return "head/head_login_status";
+    }
+
+
+    @RequestMapping(value = "/show_toast",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String showToast(HttpSession session){
+        Object lay_msg = session.getAttribute("lay_msg");
+        if(lay_msg == null){
+            return ErrorCode.bulid(201,null,null).toString();
+        }
+
+        session.removeAttribute("lay_msg");
+        return  ErrorCode.ok(lay_msg).toString();
     }
 }

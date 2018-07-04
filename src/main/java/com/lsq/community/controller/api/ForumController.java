@@ -186,8 +186,8 @@ public class ForumController {
         if(loginUser.getId().equals(userId)){
             forumService.deleteForum(forumId);
         }
-
-        return "redirect:/forum/forum_list?status=3&lay_msg=delete_success";
+        session.setAttribute("lay_msg","删除成功");
+        return "redirect:/forum/forum_list?status=3";
     }
 
     /**

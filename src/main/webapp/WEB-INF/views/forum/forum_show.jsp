@@ -35,23 +35,6 @@
     </style>
 
     <script type="text/javascript">
-        //移动光标到浏览器末尾
-        function cc()
-        {
-            var e = event.srcElement;
-            var r =e.createTextRange();
-            r.moveStart('character',e.value.length);
-            r.collapse(true);
-            r.select();
-        }
-        //回复评论
-        var reply = function (nick) {
-            $("#commit_content").val("@ " + nick + ":");
-        }
-
-
-
-
         $(function () {
             $("#commit_comment").click(function () {
                 var comment_content = $("#commit_content").val();
@@ -69,8 +52,7 @@
                     }
 
                     if(data.code == 200){
-                        srcUrl = window.location.href;
-                        window.location.href = srcUrl + "&lay_msg=comment_success";
+                        window.location.reload();
                     }
                 });
             });
@@ -86,6 +68,22 @@
                 }
             });
         });
+
+        //移动光标到浏览器末尾
+        function cc(obj)
+        {
+            if(!obj.value)
+                return;
+            var e = event.srcElement;
+            var r =e.createTextRange();
+            r.moveStart('character',e.value.length);
+            r.collapse(true);
+            r.select();
+        }
+        //回复评论
+        var reply = function (nick) {
+            $("#commit_content").val("@ " + nick + ":");
+        }
     </script>
 </head>
 <body>
@@ -118,7 +116,7 @@
 
         <div class="row forum_content" style="margin-bottom: 50px">
             <div class="row form-group">
-                <textarea rows="4" class="form-control" id="commit_content" onfocus="cc()"></textarea>
+                <textarea rows="4" class="form-control" id="commit_content" onfocus="cc(this)"></textarea>
             </div>
             <div class="row">
                 <a href="javascript:void(0)" class="btn btn-danger pull-right" id="commit_comment">发表评论</a>

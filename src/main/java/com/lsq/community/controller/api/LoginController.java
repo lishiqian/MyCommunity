@@ -38,6 +38,7 @@ public class LoginController {
             return ErrorCode.bulid(202,"密码错误",null).toString();
         }
         session.setAttribute("login_user",user);
+        session.setAttribute("lay_msg","登录成功");
         return ErrorCode.ok(null).toString();
     }
 
@@ -49,7 +50,7 @@ public class LoginController {
 
     @RequestMapping(value = "/register",produces = "application/json;charset=utf-8")
     @ResponseBody
-    public String register(String email,String username,String passwd,HttpServletRequest request){
+    public String register(String email,String username,String passwd,HttpServletRequest request,HttpSession session){
         //判断email是否能使用
         boolean exsit = userService.selectEmailExsit(email);
         if(exsit)
@@ -71,6 +72,8 @@ public class LoginController {
         //保存到数据库
         userService.addUser(user);
 
+        session.setAttribute("lay_msg","注册成功");
+
         return ErrorCode.ok(null).toString();
     }
 
@@ -79,6 +82,7 @@ public class LoginController {
     @RequestMapping("clean_user")
     public String cleanUser(HttpSession session){
         session.removeAttribute("login_user");
+        session.setAttribute("lay_msg","已退出登录");
         return "redirect:/main";
     }
 
