@@ -35,7 +35,7 @@
             </div>
             <div>
                 <ul class="nav navbar-nav pull-right">
-                    <form class="navbar-form navbar-right visible-lg-block">
+                    <form class="navbar-form navbar-right">
                         <div class="form-group">
                             <img src="../../${login_user.headImg}" class=" user-head-img"/>
                             &nbsp;&nbsp;&nbsp;&nbsp;
