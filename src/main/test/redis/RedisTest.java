@@ -91,6 +91,8 @@ public class RedisTest {
         jedis.zrevrange("zset1",0,-1);
         //读取分数
         Set<Tuple> zset1 = jedis.zrangeWithScores("zset1", 0, -1);
+        //设置key过期时间
+        jedis.expire("key1",10000);
 
     }
 }
