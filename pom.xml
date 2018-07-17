@@ -165,6 +165,13 @@
       <artifactId>pagehelper</artifactId>
       <version>4.2.1</version>
     </dependency>
+
+    <!-- redis连接 -->
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>2.9.0</version>
+    </dependency>
   </dependencies>
 
   <build>
